@@ -1,126 +1,70 @@
-# BibliotecaDigital
+BibliotecaDigital
 
-# 
+Aplicación móvil de biblioteca digital de manga desarrollada con Expo, React Native y TypeScript.
 
-# Aplicación móvil de biblioteca digital de manga desarrollada con Expo, React Native y TypeScript.
+Objetivo
 
-# 
+Permitir a los usuarios buscar mangas, consultar sus detalles, explorar capítulos y recibir recomendaciones basadas en similitudes entre sus características, según las funcionalidades implementadas.
 
-# Objetivo
+Tecnologías
+Expo
+React Native
+TypeScript
+API de MangaDex
+Git y GitHub
+GitHub Actions
+Requisitos previos
+Node.js y npm
+Git
+Expo Go o un entorno de emulación compatible
+Instalación
 
-# 
+Clonar el repositorio:
 
-# Permitir a los usuarios buscar mangas, consultar sus detalles, explorar capítulos y recibir recomendaciones basadas en similitudes entre sus características.
+git clone https://github.com/takkoh/BibliotecaDigital.git
+cd BibliotecaDigital
 
-# 
 
-# Tecnologías
+Instalar las dependencias de la aplicación:
 
-# Expo
+cd app
+npm install
 
-# React Native
+Configuración
 
-# TypeScript
+El archivo .env.example contiene una plantilla para configurar la dirección base de la API de MangaDex.
 
-# API de MangaDex
+Crea un archivo .env dentro de app/ si la aplicación lee las variables desde esa ubicación. Copia las variables necesarias desde la plantilla y ajusta su configuración según el código de la aplicación.
 
-# Git y GitHub
+Variable principal:
 
-# GitHub Actions
+EXPO_PUBLIC_MANGADEX_API_URL=https://api.mangadex.org
 
-# Requisitos
 
-# Node.js
+Las variables con el prefijo EXPO_PUBLIC_ pueden ser visibles en la aplicación. No deben contener contraseñas, tokens privados ni otras credenciales secretas.
 
-# npm
+Ejecución
 
-# Git
+Desde la carpeta app/, ejecuta:
 
-# Expo Go o un entorno de emulación compatible
+npx expo start
 
-# Instalación
 
-# 
+Sigue las instrucciones de Expo para abrir la aplicación en un dispositivo compatible o emulador.
 
-# Clonar el repositorio:
+En Windows también puedes utilizar npm.cmd y npx.cmd si PowerShell presenta problemas con los comandos habituales.
 
-# 
+Estructura del repositorio
+app/: código fuente de la aplicación móvil.
+docs/: documentación técnica y especificaciones.
+.env.example: plantilla de configuración.
+.github/workflows/: automatizaciones de integración continua.
+README.md: instrucciones generales del proyecto.
+Ramas de Git
+main: rama principal.
+develop: rama de desarrollo.
+Estado del proyecto
 
-# git clone https://github.com/takkoh/BibliotecaDigital.git
+Proyecto académico en desarrollo.
 
-# cd BibliotecaDigital
-
-# 
-
-# 
-
-# Instalar las dependencias:
-
-# 
-
-# cd app
-
-# npm.cmd install
-
-# 
-
-# Ejecución
-
-# 
-
-# Desde la carpeta app, ejecutar:
-
-# 
-
-# npx.cmd expo start
-
-# 
-
-# 
-
-# Seguir las instrucciones de Expo para abrir la aplicación en un dispositivo compatible.
-
-# 
-
-# Variables de entorno
-
-# 
-
-# El archivo .env.example contiene la dirección base de la API de MangaDex.
-
-# 
-
-# EXPO\_PUBLIC\_MANGADEX\_API\_URL=https://api.mangadex.org
-
-# 
-
-# 
-
-# Las variables con el prefijo EXPO\_PUBLIC\_ no deben contener secretos ni credenciales privadas.
-
-# 
-
-# Estructura
-
-# app/: código fuente de la aplicación móvil.
-
-# docs/: documentación técnica.
-
-# .env.example: plantilla de configuración.
-
-# .github/workflows/: automatizaciones de integración continua.
-
-# README.md: instrucciones del proyecto.
-
-# Ramas
-
-# main: rama principal.
-
-# develop: rama de desarrollo.
-
-# Estado
-
-# 
-
-# Proyecto académico en desarrollo.
-
+Las funcionalidades descritas deben corresponder con las que estén implementadas actualmente en el código fuente.
