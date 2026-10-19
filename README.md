@@ -55,7 +55,7 @@ mkdir docs
 Guarda la especificación del proyecto en:
 
 ```text
-docs/especificacion.md
+docs/especificaciones.pdf
 ```
 
 La especificación debe documentar la arquitectura, las funcionalidades previstas, el uso de MangaDex API y la integración nativa con Kotlin.
@@ -207,7 +207,7 @@ MangaLibrary/
 │   ├── package.json
 │   └── tsconfig.json
 ├── docs/
-│   └── especificacion.md
+│   └── especificaciones.pdf
 ├── .env.example
 ├── .gitignore
 ├── .commitlintrc.json
