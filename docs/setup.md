@@ -20,8 +20,7 @@ El proyecto utilizará una arquitectura híbrida que combine React Native y Expo
 - **Expo Modules API:** mecanismo de integración entre Kotlin y React Native.
 - **MangaDex API:** fuente principal de información sobre los mangas.
 - **Node.js y npm:** entorno para instalar dependencias y ejecutar las herramientas de desarrollo.
-- **Android Studio y Android SDK:** compilación, ejecución y depuración del código nativo para Android.
-
+ 
 La aplicación tendrá como plataforma objetivo Android para la funcionalidad desarrollada en Kotlin. Si posteriormente se desea ofrecer la misma funcionalidad nativa en iOS, será necesario implementar una alternativa compatible con esa plataforma, por ejemplo, mediante Swift.
 
 ## 4. API externa
@@ -366,10 +365,7 @@ Los comandos deben ejecutarse desde la carpeta que contiene `package.json`, salv
 - El módulo Kotlin está destinado a Android; no ofrece por sí solo una implementación nativa para iOS.
 - La aplicación utilizará MangaDex API como fuente principal y no mantendrá una copia completa de su catálogo.
 - La caché deberá limitarse a los datos necesarios y respetar las condiciones aplicables al uso de la API.
-- La lógica de recomendaciones será local y basada en similitudes de etiquetas, sin utilizar servicios de IA generativa.
-- No se implementarán cuentas de usuario, biblioteca personal ni historial de lectura en el alcance actual.
 - El contenido de los capítulos, sus portadas y demás recursos deberán utilizarse respetando las condiciones de MangaDex y los derechos correspondientes.
-- La documentación, los nombres de las funciones y las variables deberán actualizarse cuando cambie la implementación.
 
 ## 12. Referencias técnicas
 
