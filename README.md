@@ -470,7 +470,7 @@ Estas comprobaciones no demuestran por sí solas que la aplicación funcione cor
 Verifica que existan:
 
 - [ ] Proyecto Expo en `/app`.
-- [ ] Especificación en `/docs/especificacion.md`.
+- [ ] especificaciones en `/docs/especificaciones.pdf`.
 - [ ] `.env.example` en la raíz.
 - [ ] `.gitignore`.
 - [ ] `package.json` y `package-lock.json` en la raíz.
