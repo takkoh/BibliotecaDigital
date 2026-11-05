@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "com.mangalibrary.app-mergeDebugResources-38:/layout/activity_main.xml",
+        "source": "com.mangalibrary.app-main-41:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.mangalibrary.app-mergeDebugResources-38:/layout/fragment_cuenta.xml",
+        "source": "com.mangalibrary.app-main-41:/layout/fragment_cuenta.xml"
+    },
+    {
+        "merged": "com.mangalibrary.app-mergeDebugResources-38:/layout/fragment_recommendations.xml",
+        "source": "com.mangalibrary.app-main-41:/layout/fragment_recommendations.xml"
+    },
+    {
+        "merged": "com.mangalibrary.app-mergeDebugResources-38:/layout/fragment_manga_detail.xml",
+        "source": "com.mangalibrary.app-main-41:/layout/fragment_manga_detail.xml"
+    },
+    {
+        "merged": "com.mangalibrary.app-mergeDebugResources-38:/layout/fragment_favorites.xml",
+        "source": "com.mangalibrary.app-main-41:/layout/fragment_favorites.xml"
+    },
+    {
+        "merged": "com.mangalibrary.app-mergeDebugResources-38:/layout/item_recommendation.xml",
+        "source": "com.mangalibrary.app-main-41:/layout/item_recommendation.xml"
+    },
+    {
+        "merged": "com.mangalibrary.app-mergeDebugResources-38:/layout/item_manga.xml",
+        "source": "com.mangalibrary.app-main-41:/layout/item_manga.xml"
+    },
+    {
+        "merged": "com.mangalibrary.app-mergeDebugResources-38:/layout/item_chapter.xml",
+        "source": "com.mangalibrary.app-main-41:/layout/item_chapter.xml"
+    },
+    {
+        "merged": "com.mangalibrary.app-mergeDebugResources-38:/layout/fragment_manga_search.xml",
+        "source": "com.mangalibrary.app-main-41:/layout/fragment_manga_search.xml"
+    }
+]

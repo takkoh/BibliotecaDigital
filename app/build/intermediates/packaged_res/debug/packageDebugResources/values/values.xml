@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#F6F7FB</color>
+    <color name="chip_bg">#E8DEF8</color>
+    <color name="chip_text">#1D192B</color>
+    <color name="primary">#6200EE</color>
+    <color name="primary_variant">#3700B3</color>
+    <color name="secondary">#03DAC6</color>
+    <color name="star_gold">#FFB800</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#1D1B20</color>
+    <color name="text_secondary">#49454F</color>
+    <dimen name="m_toolbar_height">55dp</dimen>
+    <string name="TituloRL">Biblioteca Digital</string>
+    <string name="app_name">Biblioteca Digital Manga</string>
+    <string name="author_label">Autor: %1$s</string>
+    <string name="chapters_header">Capítulos Disponibles</string>
+    <string name="content_rating_label">Clasificación: %1$s</string>
+    <string name="no_chapters">No hay capítulos disponibles en este idioma.</string>
+    <string name="no_mangas_found">No se encontraron mangas.</string>
+    <string name="no_recommendations">No se encontraron recomendaciones similares.</string>
+    <string name="recommendations_header">Recomendaciones Inteligentes</string>
+    <string name="recommendations_subtitle">Calculadas localmente por reglas (géneros, etiquetas, autor)</string>
+    <string name="search_hint">Buscar mangas en MangaDex...</string>
+    <string name="status_label">Estado: %1$s</string>
+    <string name="synopsis_header">Sinopsis</string>
+    <string name="year_label">Año: %1$d</string>
+    <style name="ShapeAppearanceOverlay.App.Corner8" parent="">
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="Theme.MangaLibrary" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="android:statusBarColor">@color/primary_variant</item>
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+</resources>

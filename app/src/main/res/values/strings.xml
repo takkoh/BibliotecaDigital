@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Biblioteca Digital Manga</string>
+    <string name="TituloRL">Biblioteca Digital</string>
+    <string name="search_hint">Buscar mangas en MangaDex...</string>
+    <string name="status_label">Estado: %1$s</string>
+    <string name="author_label">Autor: %1$s</string>
+    <string name="year_label">Año: %1$d</string>
+    <string name="content_rating_label">Clasificación: %1$s</string>
+    <string name="synopsis_header">Sinopsis</string>
+    <string name="recommendations_header">Recomendaciones Inteligentes</string>
+    <string name="recommendations_subtitle">Calculadas localmente por reglas (géneros, etiquetas, autor)</string>
+    <string name="chapters_header">Capítulos Disponibles</string>
+    <string name="no_mangas_found">No se encontraron mangas.</string>
+    <string name="no_chapters">No hay capítulos disponibles en este idioma.</string>
+    <string name="no_recommendations">No se encontraron recomendaciones similares.</string>
+</resources>
