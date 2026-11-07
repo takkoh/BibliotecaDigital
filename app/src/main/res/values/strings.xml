@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Biblioteca Digital Manga</string>
+    <string name="TituloRL">Biblioteca Digital</string>
+    <string name="search_hint">Buscar mangas en MangaDex...</string>
+    <string name="status_label">Estado: %1$s</string>
+    <string name="author_label">Autor: %1$s</string>
+    <string name="year_label">Año: %1$d</string>
+    <string name="content_rating_label">Clasificación: %1$s</string>
+    <string name="synopsis_header">Sinopsis</string>
+    <string name="recommendations_header">Recomendaciones Inteligentes</string>
+    <string name="recommendations_subtitle">Calculadas localmente por reglas (géneros, etiquetas, autor)</string>
+    <string name="chapters_header">Capítulos Disponibles</string>
+    <string name="no_mangas_found">No se encontraron mangas.</string>
+    <string name="no_chapters">No hay capítulos disponibles en este idioma.</string>
+    <string name="no_recommendations">No se encontraron recomendaciones similares.</string>
+
+    <!-- Strings de la pantalla de cuenta (AppAgenda) -->
+    <string name="Txt_perfil">PERFIL</string>
+    <string name="Txt_nombres">Nombres:</string>
+    <string name="Tv_nombres">Lector de Manga</string>
+    <string name="Txt_email">Correo Electrónico:</string>
+    <string name="Tv_email">lector@mangalibrary.com</string>
+    <string name="Txt_nacimiento">Fecha de Nacimiento:</string>
+    <string name="Tv_nacimiento">01/01/2000</string>
+    <string name="Txt_miembro">Miembro Desde:</string>
+    <string name="Tv_miembro">Enero 2026</string>
+    <string name="Txt_telefono">Teléfono:</string>
+    <string name="Tv_telefono">+34 600 000 000</string>
+    <string name="Txt_estado_cuenta">Estado de Cuenta:</string>
+    <string name="Tv_estado_cuenta">Activo</string>
+    <string name="TxtOpciones">Opciones de Cuenta</string>
+    <string name="Btn_editar_perfil">Editar Perfil</string>
+    <string name="Btn_cerrar_sesion">Cerrar Sesión</string>
+</resources>

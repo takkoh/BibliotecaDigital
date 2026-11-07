@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.mangalibrary.app-mergeDebugResources-37:/values-ldltr-v21/values-ldltr-v21.xml",
+            "map": [
+                {
+                    "source": "/home/tako/.gradle/caches/9.5.0/transforms/04d292113f32bdc4c4699f9fb7f9ccdb/transformed/appcompat-1.6.1/res/values-ldltr-v21/values-ldltr-v21.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "112",
+                        "endOffsets": "163"
+                    }
+                }
+            ]
+        }
+    ]
+}
