@@ -1,46 +1,58 @@
 [
     {
-        "merged": "com.mangalibrary.app-debug-39:/layout_item_manga.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/layout/item_manga.xml"
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/layout_activity_lector.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/layout/activity_lector.xml"
     },
     {
-        "merged": "com.mangalibrary.app-debug-39:/layout_activity_main.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/layout/activity_main.xml"
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/layout_activity_main.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/layout/activity_main.xml"
     },
     {
-        "merged": "com.mangalibrary.app-debug-39:/layout_fragment_favorites.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/layout/fragment_favorites.xml"
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/layout_fragment_cuenta.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/layout/fragment_cuenta.xml"
     },
     {
-        "merged": "com.mangalibrary.app-debug-39:/layout_item_chapter.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/layout/item_chapter.xml"
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/layout_fragment_manga_search.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/layout/fragment_manga_search.xml"
     },
     {
-        "merged": "com.mangalibrary.app-debug-39:/layout_fragment_manga_detail.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/layout/fragment_manga_detail.xml"
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/menu_bottom_nav_menu.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/menu/bottom_nav_menu.xml"
     },
     {
-        "merged": "com.mangalibrary.app-debug-39:/menu_bottom_nav_menu.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/menu/bottom_nav_menu.xml"
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/layout_fragment_manga_detail.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/layout/fragment_manga_detail.xml"
     },
     {
-        "merged": "com.mangalibrary.app-debug-39:/layout_fragment_recommendations.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/layout/fragment_recommendations.xml"
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/layout_item_manga.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/layout/item_manga.xml"
     },
     {
-        "merged": "com.mangalibrary.app-debug-39:/layout_fragment_cuenta.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/layout/fragment_cuenta.xml"
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/menu_mi_menu.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/menu/mi_menu.xml"
     },
     {
-        "merged": "com.mangalibrary.app-debug-39:/layout_fragment_manga_search.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/layout/fragment_manga_search.xml"
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/layout_item_chapter.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/layout/item_chapter.xml"
     },
     {
-        "merged": "com.mangalibrary.app-debug-39:/layout_item_recommendation.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/layout/item_recommendation.xml"
+        "merged": "com.mangalibrary.app-debug-39:/layout_activity_editar_perfil.xml.flat",
+        "source": "com.mangalibrary.app-main-41:/layout/activity_editar_perfil.xml"
     },
     {
-        "merged": "com.mangalibrary.app-debug-39:/menu_mi_menu.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/menu/mi_menu.xml"
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/layout_fragment_recommendations.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/layout/fragment_recommendations.xml"
+    },
+    {
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/layout_item_recommendation.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/layout/item_recommendation.xml"
+    },
+    {
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/layout_fragment_favorites.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/layout/fragment_favorites.xml"
+    },
+    {
+        "merged": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-debug-39:/layout_item_reader_page.xml.flat",
+        "source": "/home/tako/.gradle/daemon/9.5.0/com.mangalibrary.app-main-41:/layout/item_reader_page.xml"
     }
 ]

@@ -39,6 +39,15 @@ interface MangaDexApi {
         @Query("order[chapter]") orderChapter: String = "asc"
     ): MangaDexListResponse<ChapterDataDto>
 
+    /**
+     * Obtiene el servidor At-Home de MangaDex para un capítulo específico,
+     * el cual contiene la URL base y los hashes/nombres de archivo de las páginas.
+     */
+    @GET("at-home/server/{chapterId}")
+    suspend fun getAtHomeServer(
+        @Path("chapterId") chapterId: String
+    ): com.mangalibrary.data.model.AtHomeResponseDto
+
     companion object {
         private const val BASE_URL = "https://api.mangadex.org/"
         const val COVER_BASE_URL = "https://uploads.mangadex.org/covers"

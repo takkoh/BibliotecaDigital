@@ -63,6 +63,30 @@ class MangaDexRepository(
         }
     }
 
+    /**
+     * Obtiene las URLs completas de las páginas de un capítulo determinado
+     * consultando el servidor At-Home de MangaDex.
+     */
+    suspend fun getChapterPages(chapterId: String): Result<List<String>> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val atHomeResponse = api.getAtHomeServer(chapterId)
+                val baseUrl = atHomeResponse.baseUrl
+                val hash = atHomeResponse.chapter.hash
+                // Usamos 'data' para alta calidad o 'dataSaver' para menor consumo de datos
+                val pageFiles = atHomeResponse.chapter.data
+
+                // Construimos la URL completa para cada página: {baseUrl}/data/{hash}/{filename}
+                val pageUrls = pageFiles.map { filename ->
+                    "$baseUrl/data/$hash/$filename"
+                }
+                Result.success(pageUrls)
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        }
+    }
+
     private fun dtoToMangaItem(dto: MangaDataDto): MangaItem {
         val attr = dto.attributes
         val title = attr.title?.get("es")

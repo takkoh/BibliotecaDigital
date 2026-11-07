@@ -4,25 +4,110 @@ package com.mangalibrary.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.mangalibrary.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
+import java.lang.String;
 
 public final class FragmentCuentaBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final ScrollView rootView;
 
-  private FragmentCuentaBinding(@NonNull LinearLayout rootView) {
+  @NonNull
+  public final MaterialButton BtnCerrarSesion;
+
+  @NonNull
+  public final MaterialButton BtnEditarPerfil;
+
+  @NonNull
+  public final TextView TvEmail;
+
+  @NonNull
+  public final TextView TvEstadoCuenta;
+
+  @NonNull
+  public final TextView TvMiembro;
+
+  @NonNull
+  public final TextView TvNacimiento;
+
+  @NonNull
+  public final TextView TvNombres;
+
+  @NonNull
+  public final ShapeableImageView TvPerfil;
+
+  @NonNull
+  public final TextView TvTelefono;
+
+  @NonNull
+  public final TextView TxtEmail;
+
+  @NonNull
+  public final TextView TxtEstadoCuenta;
+
+  @NonNull
+  public final TextView TxtMiembro;
+
+  @NonNull
+  public final TextView TxtNacimiento;
+
+  @NonNull
+  public final TextView TxtNombres;
+
+  @NonNull
+  public final TextView TxtOpciones;
+
+  @NonNull
+  public final TextView TxtPerfil;
+
+  @NonNull
+  public final TextView TxtTelefono;
+
+  @NonNull
+  public final TextView txtInformacion;
+
+  private FragmentCuentaBinding(@NonNull ScrollView rootView,
+      @NonNull MaterialButton BtnCerrarSesion, @NonNull MaterialButton BtnEditarPerfil,
+      @NonNull TextView TvEmail, @NonNull TextView TvEstadoCuenta, @NonNull TextView TvMiembro,
+      @NonNull TextView TvNacimiento, @NonNull TextView TvNombres,
+      @NonNull ShapeableImageView TvPerfil, @NonNull TextView TvTelefono,
+      @NonNull TextView TxtEmail, @NonNull TextView TxtEstadoCuenta, @NonNull TextView TxtMiembro,
+      @NonNull TextView TxtNacimiento, @NonNull TextView TxtNombres, @NonNull TextView TxtOpciones,
+      @NonNull TextView TxtPerfil, @NonNull TextView TxtTelefono,
+      @NonNull TextView txtInformacion) {
     this.rootView = rootView;
+    this.BtnCerrarSesion = BtnCerrarSesion;
+    this.BtnEditarPerfil = BtnEditarPerfil;
+    this.TvEmail = TvEmail;
+    this.TvEstadoCuenta = TvEstadoCuenta;
+    this.TvMiembro = TvMiembro;
+    this.TvNacimiento = TvNacimiento;
+    this.TvNombres = TvNombres;
+    this.TvPerfil = TvPerfil;
+    this.TvTelefono = TvTelefono;
+    this.TxtEmail = TxtEmail;
+    this.TxtEstadoCuenta = TxtEstadoCuenta;
+    this.TxtMiembro = TxtMiembro;
+    this.TxtNacimiento = TxtNacimiento;
+    this.TxtNombres = TxtNombres;
+    this.TxtOpciones = TxtOpciones;
+    this.TxtPerfil = TxtPerfil;
+    this.TxtTelefono = TxtTelefono;
+    this.txtInformacion = txtInformacion;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -43,10 +128,124 @@ public final class FragmentCuentaBinding implements ViewBinding {
 
   @NonNull
   public static FragmentCuentaBinding bind(@NonNull View rootView) {
-    if (rootView == null) {
-      throw new NullPointerException("rootView");
-    }
+    // The body of this method is generated in a way you would not otherwise write.
+    // This is done to optimize the compiled bytecode for size and performance.
+    int id;
+    missingId: {
+      id = R.id.Btn_cerrar_sesion;
+      MaterialButton BtnCerrarSesion = ViewBindings.findChildViewById(rootView, id);
+      if (BtnCerrarSesion == null) {
+        break missingId;
+      }
 
-    return new FragmentCuentaBinding((LinearLayout) rootView);
+      id = R.id.Btn_editar_perfil;
+      MaterialButton BtnEditarPerfil = ViewBindings.findChildViewById(rootView, id);
+      if (BtnEditarPerfil == null) {
+        break missingId;
+      }
+
+      id = R.id.Tv_email;
+      TextView TvEmail = ViewBindings.findChildViewById(rootView, id);
+      if (TvEmail == null) {
+        break missingId;
+      }
+
+      id = R.id.Tv_estado_cuenta;
+      TextView TvEstadoCuenta = ViewBindings.findChildViewById(rootView, id);
+      if (TvEstadoCuenta == null) {
+        break missingId;
+      }
+
+      id = R.id.Tv_miembro;
+      TextView TvMiembro = ViewBindings.findChildViewById(rootView, id);
+      if (TvMiembro == null) {
+        break missingId;
+      }
+
+      id = R.id.Tv_nacimiento;
+      TextView TvNacimiento = ViewBindings.findChildViewById(rootView, id);
+      if (TvNacimiento == null) {
+        break missingId;
+      }
+
+      id = R.id.Tv_nombres;
+      TextView TvNombres = ViewBindings.findChildViewById(rootView, id);
+      if (TvNombres == null) {
+        break missingId;
+      }
+
+      id = R.id.Tv_perfil;
+      ShapeableImageView TvPerfil = ViewBindings.findChildViewById(rootView, id);
+      if (TvPerfil == null) {
+        break missingId;
+      }
+
+      id = R.id.Tv_telefono;
+      TextView TvTelefono = ViewBindings.findChildViewById(rootView, id);
+      if (TvTelefono == null) {
+        break missingId;
+      }
+
+      id = R.id.Txt_email;
+      TextView TxtEmail = ViewBindings.findChildViewById(rootView, id);
+      if (TxtEmail == null) {
+        break missingId;
+      }
+
+      id = R.id.Txt_estado_cuenta;
+      TextView TxtEstadoCuenta = ViewBindings.findChildViewById(rootView, id);
+      if (TxtEstadoCuenta == null) {
+        break missingId;
+      }
+
+      id = R.id.Txt_miembro;
+      TextView TxtMiembro = ViewBindings.findChildViewById(rootView, id);
+      if (TxtMiembro == null) {
+        break missingId;
+      }
+
+      id = R.id.Txt_nacimiento;
+      TextView TxtNacimiento = ViewBindings.findChildViewById(rootView, id);
+      if (TxtNacimiento == null) {
+        break missingId;
+      }
+
+      id = R.id.Txt_nombres;
+      TextView TxtNombres = ViewBindings.findChildViewById(rootView, id);
+      if (TxtNombres == null) {
+        break missingId;
+      }
+
+      id = R.id.TxtOpciones;
+      TextView TxtOpciones = ViewBindings.findChildViewById(rootView, id);
+      if (TxtOpciones == null) {
+        break missingId;
+      }
+
+      id = R.id.Txt_perfil;
+      TextView TxtPerfil = ViewBindings.findChildViewById(rootView, id);
+      if (TxtPerfil == null) {
+        break missingId;
+      }
+
+      id = R.id.Txt_telefono;
+      TextView TxtTelefono = ViewBindings.findChildViewById(rootView, id);
+      if (TxtTelefono == null) {
+        break missingId;
+      }
+
+      id = R.id.txt_informacion;
+      TextView txtInformacion = ViewBindings.findChildViewById(rootView, id);
+      if (txtInformacion == null) {
+        break missingId;
+      }
+
+      return new FragmentCuentaBinding((ScrollView) rootView, BtnCerrarSesion, BtnEditarPerfil,
+          TvEmail, TvEstadoCuenta, TvMiembro, TvNacimiento, TvNombres, TvPerfil, TvTelefono,
+          TxtEmail, TxtEstadoCuenta, TxtMiembro, TxtNacimiento, TxtNombres, TxtOpciones, TxtPerfil,
+          TxtTelefono, txtInformacion);
+    }
+    String missingId = rootView.getResources().getResourceName(id);
+    throw new NullPointerException("Missing required view with ID: ".concat(missingId));
   }
 }

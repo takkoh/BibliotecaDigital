@@ -36,6 +36,18 @@
             </intent-filter>
         </activity>
 
+        <!-- Actividad del Lector Interno de Capítulos -->
+        <activity
+            android:name="com.mangalibrary.ui.LectorActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MangaLibrary" />
+
+        <!-- Actividad de Edición de Perfil -->
+        <activity
+            android:name="com.mangalibrary.ui.EditarPerfilActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MangaLibrary" />
+
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="com.mangalibrary.androidx-startup"

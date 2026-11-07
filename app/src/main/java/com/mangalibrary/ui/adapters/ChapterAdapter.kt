@@ -31,6 +31,17 @@ class ChapterAdapter : ListAdapter<ChapterItem, ChapterAdapter.ChapterViewHolder
             binding.tvChapterTitle.text = titleText
             binding.tvChapterLang.text = "Idioma: ${chapter.translatedLanguage.uppercase()}"
 
+            // Configurar el clic en todo el elemento para abrir el lector interno de la app
+            binding.root.setOnClickListener {
+                val context = binding.root.context
+                val intent = Intent(context, com.mangalibrary.ui.LectorActivity::class.java).apply {
+                    putExtra("CHAPTER_ID", chapter.id)
+                    putExtra("CHAPTER_TITLE", titleText)
+                }
+                context.startActivity(intent)
+            }
+
+            // Opcional: mantener enlace externo si está disponible
             if (!chapter.externalUrl.isNullOrBlank()) {
                 binding.btnOpenChapter.visibility = View.VISIBLE
                 binding.btnOpenChapter.setOnClickListener {

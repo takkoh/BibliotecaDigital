@@ -19,6 +19,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Actividad del Lector Interno de Capítulos -->
+        <activity
+            android:name=".ui.LectorActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MangaLibrary" />
+
+        <!-- Actividad de Edición de Perfil -->
+        <activity
+            android:name=".ui.EditarPerfilActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MangaLibrary" />
     </application>
 
 </manifest>

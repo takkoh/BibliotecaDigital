@@ -122,3 +122,17 @@ data class CoverDataDto(
 data class CoverAttributesDto(
     val fileName: String?
 )
+
+// --- At-Home API DTO Models (Para obtener las páginas de lectura) ---
+
+data class AtHomeResponseDto(
+    val result: String,
+    val baseUrl: String,
+    val chapter: AtHomeChapterDto
+)
+
+data class AtHomeChapterDto(
+    val hash: String,
+    val data: List<String>,       // Lista de nombres de archivos de alta calidad
+    val dataSaver: List<String>   // Lista de nombres de archivos comprimidos (ahorro de datos)
+)
