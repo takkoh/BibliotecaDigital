@@ -1,0 +1,8 @@
+com.mangalibrary.app-pngs-0 C:\Users\LuzRd\Downloads\BibliotecaDigital-develop\BibliotecaDigital-develop\app\build\generated\res\pngs\debug
+com.mangalibrary.app-updated_navigation_xml-1 C:\Users\LuzRd\Downloads\BibliotecaDigital-develop\BibliotecaDigital-develop\app\build\generated\updated_navigation_xml\debug
+com.mangalibrary.app-packageDebugResources-2 C:\Users\LuzRd\Downloads\BibliotecaDigital-develop\BibliotecaDigital-develop\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.mangalibrary.app-packageDebugResources-3 C:\Users\LuzRd\Downloads\BibliotecaDigital-develop\BibliotecaDigital-develop\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.mangalibrary.app-debug-4 C:\Users\LuzRd\Downloads\BibliotecaDigital-develop\BibliotecaDigital-develop\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.mangalibrary.app-debug-5 C:\Users\LuzRd\Downloads\BibliotecaDigital-develop\BibliotecaDigital-develop\app\src\debug\res
+com.mangalibrary.app-main-6 C:\Users\LuzRd\Downloads\BibliotecaDigital-develop\BibliotecaDigital-develop\app\src\main\res
+gradleHome-0 C:\Users\LuzRd\.gradle

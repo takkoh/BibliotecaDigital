@@ -1,0 +1,11 @@
+{
+  "name": "biblioteca-digital-repository",
+  "private": true,
+  "scripts": {
+    "commitlint": "commitlint"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.0.0",
+    "@commitlint/config-conventional": "^20.0.0"
+  }
+}

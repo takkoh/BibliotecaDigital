@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Item_Inicio"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Inicio" />
+
+    <item
+        android:id="@+id/Item_Recomendaciones"
+        android:icon="@android:drawable/btn_star"
+        android:title="Recomendaciones" />
+
+    <item
+        android:id="@+id/Item_Mis_Favoritos"
+        android:icon="@android:drawable/star_on"
+        android:title="Favoritos" />
+
+    <item
+        android:id="@+id/Item_Cuenta"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Cuenta" />
+</menu>
