@@ -4,17 +4,19 @@ package com.mangalibrary.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.widget.NestedScrollView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.chip.Chip;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.mangalibrary.R;
@@ -24,7 +26,10 @@ import java.lang.String;
 
 public final class FragmentMangaDetailBinding implements ViewBinding {
   @NonNull
-  private final NestedScrollView rootView;
+  private final LinearLayout rootView;
+
+  @NonNull
+  public final AutoCompleteTextView autoCompleteLang;
 
   @NonNull
   public final MaterialButton btnContinueReading;
@@ -33,19 +38,13 @@ public final class FragmentMangaDetailBinding implements ViewBinding {
   public final ImageButton btnFavorite;
 
   @NonNull
-  public final ChipGroup cgLanguageFilter;
+  public final MaterialButton btnSortAsc;
+
+  @NonNull
+  public final MaterialButton btnSortDesc;
 
   @NonNull
   public final ChipGroup cgTags;
-
-  @NonNull
-  public final Chip chipLangAll;
-
-  @NonNull
-  public final Chip chipLangEn;
-
-  @NonNull
-  public final Chip chipLangEs;
 
   @NonNull
   public final ShapeableImageView ivCover;
@@ -58,6 +57,12 @@ public final class FragmentMangaDetailBinding implements ViewBinding {
 
   @NonNull
   public final RecyclerView rvRecommendations;
+
+  @NonNull
+  public final MaterialButtonToggleGroup toggleGroupSort;
+
+  @NonNull
+  public final Toolbar toolbarDetail;
 
   @NonNull
   public final TextView tvDescription;
@@ -77,27 +82,29 @@ public final class FragmentMangaDetailBinding implements ViewBinding {
   @NonNull
   public final TextView tvDetailYear;
 
-  private FragmentMangaDetailBinding(@NonNull NestedScrollView rootView,
-      @NonNull MaterialButton btnContinueReading, @NonNull ImageButton btnFavorite,
-      @NonNull ChipGroup cgLanguageFilter, @NonNull ChipGroup cgTags, @NonNull Chip chipLangAll,
-      @NonNull Chip chipLangEn, @NonNull Chip chipLangEs, @NonNull ShapeableImageView ivCover,
-      @NonNull ProgressBar pbChapters, @NonNull RecyclerView rvChapters,
-      @NonNull RecyclerView rvRecommendations, @NonNull TextView tvDescription,
-      @NonNull TextView tvDetailAuthor, @NonNull TextView tvDetailRating,
-      @NonNull TextView tvDetailStatus, @NonNull TextView tvDetailTitle,
-      @NonNull TextView tvDetailYear) {
+  private FragmentMangaDetailBinding(@NonNull LinearLayout rootView,
+      @NonNull AutoCompleteTextView autoCompleteLang, @NonNull MaterialButton btnContinueReading,
+      @NonNull ImageButton btnFavorite, @NonNull MaterialButton btnSortAsc,
+      @NonNull MaterialButton btnSortDesc, @NonNull ChipGroup cgTags,
+      @NonNull ShapeableImageView ivCover, @NonNull ProgressBar pbChapters,
+      @NonNull RecyclerView rvChapters, @NonNull RecyclerView rvRecommendations,
+      @NonNull MaterialButtonToggleGroup toggleGroupSort, @NonNull Toolbar toolbarDetail,
+      @NonNull TextView tvDescription, @NonNull TextView tvDetailAuthor,
+      @NonNull TextView tvDetailRating, @NonNull TextView tvDetailStatus,
+      @NonNull TextView tvDetailTitle, @NonNull TextView tvDetailYear) {
     this.rootView = rootView;
+    this.autoCompleteLang = autoCompleteLang;
     this.btnContinueReading = btnContinueReading;
     this.btnFavorite = btnFavorite;
-    this.cgLanguageFilter = cgLanguageFilter;
+    this.btnSortAsc = btnSortAsc;
+    this.btnSortDesc = btnSortDesc;
     this.cgTags = cgTags;
-    this.chipLangAll = chipLangAll;
-    this.chipLangEn = chipLangEn;
-    this.chipLangEs = chipLangEs;
     this.ivCover = ivCover;
     this.pbChapters = pbChapters;
     this.rvChapters = rvChapters;
     this.rvRecommendations = rvRecommendations;
+    this.toggleGroupSort = toggleGroupSort;
+    this.toolbarDetail = toolbarDetail;
     this.tvDescription = tvDescription;
     this.tvDetailAuthor = tvDetailAuthor;
     this.tvDetailRating = tvDetailRating;
@@ -108,7 +115,7 @@ public final class FragmentMangaDetailBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public NestedScrollView getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -133,6 +140,12 @@ public final class FragmentMangaDetailBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.autoCompleteLang;
+      AutoCompleteTextView autoCompleteLang = ViewBindings.findChildViewById(rootView, id);
+      if (autoCompleteLang == null) {
+        break missingId;
+      }
+
       id = R.id.btn_continue_reading;
       MaterialButton btnContinueReading = ViewBindings.findChildViewById(rootView, id);
       if (btnContinueReading == null) {
@@ -145,33 +158,21 @@ public final class FragmentMangaDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.cg_language_filter;
-      ChipGroup cgLanguageFilter = ViewBindings.findChildViewById(rootView, id);
-      if (cgLanguageFilter == null) {
+      id = R.id.btnSortAsc;
+      MaterialButton btnSortAsc = ViewBindings.findChildViewById(rootView, id);
+      if (btnSortAsc == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSortDesc;
+      MaterialButton btnSortDesc = ViewBindings.findChildViewById(rootView, id);
+      if (btnSortDesc == null) {
         break missingId;
       }
 
       id = R.id.cg_tags;
       ChipGroup cgTags = ViewBindings.findChildViewById(rootView, id);
       if (cgTags == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_lang_all;
-      Chip chipLangAll = ViewBindings.findChildViewById(rootView, id);
-      if (chipLangAll == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_lang_en;
-      Chip chipLangEn = ViewBindings.findChildViewById(rootView, id);
-      if (chipLangEn == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_lang_es;
-      Chip chipLangEs = ViewBindings.findChildViewById(rootView, id);
-      if (chipLangEs == null) {
         break missingId;
       }
 
@@ -196,6 +197,18 @@ public final class FragmentMangaDetailBinding implements ViewBinding {
       id = R.id.rv_recommendations;
       RecyclerView rvRecommendations = ViewBindings.findChildViewById(rootView, id);
       if (rvRecommendations == null) {
+        break missingId;
+      }
+
+      id = R.id.toggleGroupSort;
+      MaterialButtonToggleGroup toggleGroupSort = ViewBindings.findChildViewById(rootView, id);
+      if (toggleGroupSort == null) {
+        break missingId;
+      }
+
+      id = R.id.toolbarDetail;
+      Toolbar toolbarDetail = ViewBindings.findChildViewById(rootView, id);
+      if (toolbarDetail == null) {
         break missingId;
       }
 
@@ -235,10 +248,10 @@ public final class FragmentMangaDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentMangaDetailBinding((NestedScrollView) rootView, btnContinueReading,
-          btnFavorite, cgLanguageFilter, cgTags, chipLangAll, chipLangEn, chipLangEs, ivCover,
-          pbChapters, rvChapters, rvRecommendations, tvDescription, tvDetailAuthor, tvDetailRating,
-          tvDetailStatus, tvDetailTitle, tvDetailYear);
+      return new FragmentMangaDetailBinding((LinearLayout) rootView, autoCompleteLang,
+          btnContinueReading, btnFavorite, btnSortAsc, btnSortDesc, cgTags, ivCover, pbChapters,
+          rvChapters, rvRecommendations, toggleGroupSort, toolbarDetail, tvDescription,
+          tvDetailAuthor, tvDetailRating, tvDetailStatus, tvDetailTitle, tvDetailYear);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

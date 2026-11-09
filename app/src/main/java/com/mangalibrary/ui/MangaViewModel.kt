@@ -16,7 +16,10 @@ data class MangaUiState(
     val searchQuery: String = "",
     val selectedStatus: String? = null,
     val selectedGenreTagId: String? = null,
+    val selectedGenreTagName: String? = null,
     val searchResults: List<MangaItem> = emptyList(),
+    val trendingMangas: List<MangaItem> = emptyList(),
+    val recentlyUpdatedMangas: List<MangaItem> = emptyList(),
     val selectedManga: MangaItem? = null,
     val chapters: List<ChapterItem> = emptyList(),
     val recommendations: List<RecommendationResult> = emptyList(),
@@ -34,18 +37,30 @@ class MangaViewModel(
     val uiState: StateFlow<MangaUiState> = _uiState.asStateFlow()
 
     init {
-        // Initial popular / default search
+        loadHomeData()
         searchManga("")
+    }
+
+    fun loadHomeData() {
+        viewModelScope.launch {
+            val trendingRes = repository.getTrendingManga()
+            val recentRes = repository.getRecentlyUpdatedManga()
+            _uiState.value = _uiState.value.copy(
+                trendingMangas = trendingRes.getOrDefault(emptyList()),
+                recentlyUpdatedMangas = recentRes.getOrDefault(emptyList())
+            )
+        }
     }
 
     fun onSearchQueryChanged(newQuery: String) {
         _uiState.value = _uiState.value.copy(searchQuery = newQuery)
     }
 
-    fun setFilters(status: String?, genreTagId: String?) {
+    fun setFilters(status: String?, genreTagId: String?, genreTagName: String? = null) {
         _uiState.value = _uiState.value.copy(
             selectedStatus = status,
-            selectedGenreTagId = genreTagId
+            selectedGenreTagId = genreTagId,
+            selectedGenreTagName = genreTagName
         )
         searchManga()
     }
@@ -88,11 +103,9 @@ class MangaViewModel(
         )
 
         viewModelScope.launch {
-            // Load Chapters
             val chapterResult = repository.getMangaChapters(manga.id)
             val loadedChapters = chapterResult.getOrDefault(emptyList())
 
-            // Generate Recommendations based on search candidates
             val candidates = _uiState.value.searchResults
             val recs = recommendationEngine.getRecommendations(manga, candidates)
 

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import androidx.viewpager2.widget.ViewPager2;
@@ -30,7 +31,13 @@ public final class ActivityLectorBinding implements ViewBinding {
   public final MaterialButton btnPrevChapter;
 
   @NonNull
+  public final MaterialButton btnToggleMode;
+
+  @NonNull
   public final LinearLayout layoutBottomNav;
+
+  @NonNull
+  public final RecyclerView rvWebtoonPages;
 
   @NonNull
   public final Toolbar toolbarReader;
@@ -43,12 +50,15 @@ public final class ActivityLectorBinding implements ViewBinding {
 
   private ActivityLectorBinding(@NonNull ConstraintLayout rootView,
       @NonNull MaterialButton btnNextChapter, @NonNull MaterialButton btnPrevChapter,
-      @NonNull LinearLayout layoutBottomNav, @NonNull Toolbar toolbarReader,
+      @NonNull MaterialButton btnToggleMode, @NonNull LinearLayout layoutBottomNav,
+      @NonNull RecyclerView rvWebtoonPages, @NonNull Toolbar toolbarReader,
       @NonNull TextView tvPageIndicator, @NonNull ViewPager2 viewPagerPages) {
     this.rootView = rootView;
     this.btnNextChapter = btnNextChapter;
     this.btnPrevChapter = btnPrevChapter;
+    this.btnToggleMode = btnToggleMode;
     this.layoutBottomNav = layoutBottomNav;
+    this.rvWebtoonPages = rvWebtoonPages;
     this.toolbarReader = toolbarReader;
     this.tvPageIndicator = tvPageIndicator;
     this.viewPagerPages = viewPagerPages;
@@ -93,9 +103,21 @@ public final class ActivityLectorBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnToggleMode;
+      MaterialButton btnToggleMode = ViewBindings.findChildViewById(rootView, id);
+      if (btnToggleMode == null) {
+        break missingId;
+      }
+
       id = R.id.layoutBottomNav;
       LinearLayout layoutBottomNav = ViewBindings.findChildViewById(rootView, id);
       if (layoutBottomNav == null) {
+        break missingId;
+      }
+
+      id = R.id.rvWebtoonPages;
+      RecyclerView rvWebtoonPages = ViewBindings.findChildViewById(rootView, id);
+      if (rvWebtoonPages == null) {
         break missingId;
       }
 
@@ -118,7 +140,8 @@ public final class ActivityLectorBinding implements ViewBinding {
       }
 
       return new ActivityLectorBinding((ConstraintLayout) rootView, btnNextChapter, btnPrevChapter,
-          layoutBottomNav, toolbarReader, tvPageIndicator, viewPagerPages);
+          btnToggleMode, layoutBottomNav, rvWebtoonPages, toolbarReader, tvPageIndicator,
+          viewPagerPages);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

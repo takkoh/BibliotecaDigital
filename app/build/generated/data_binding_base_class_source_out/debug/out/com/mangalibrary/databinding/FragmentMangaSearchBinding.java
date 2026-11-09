@@ -4,18 +4,13 @@ package com.mangalibrary.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.mangalibrary.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -23,100 +18,29 @@ import java.lang.String;
 
 public final class FragmentMangaSearchBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
-
-  @NonNull
-  public final ChipGroup cgGenreFilter;
-
-  @NonNull
-  public final ChipGroup cgStatusFilter;
-
-  @NonNull
-  public final Chip chipGenreAction;
-
-  @NonNull
-  public final Chip chipGenreAdventure;
-
-  @NonNull
-  public final Chip chipGenreAll;
-
-  @NonNull
-  public final Chip chipGenreComedy;
-
-  @NonNull
-  public final Chip chipGenreFantasy;
-
-  @NonNull
-  public final Chip chipGenreIsekai;
-
-  @NonNull
-  public final Chip chipGenreRomance;
-
-  @NonNull
-  public final Chip chipGenreScifi;
-
-  @NonNull
-  public final Chip chipGenreSupernatural;
-
-  @NonNull
-  public final Chip chipStatusAll;
-
-  @NonNull
-  public final Chip chipStatusCompleted;
-
-  @NonNull
-  public final Chip chipStatusOngoing;
-
-  @NonNull
-  public final TextInputEditText etSearch;
+  private final NestedScrollView rootView;
 
   @NonNull
   public final ProgressBar progressBar;
 
   @NonNull
-  public final RecyclerView rvMangaSearch;
+  public final RecyclerView rvRecent;
 
   @NonNull
-  public final TextInputLayout tilSearch;
+  public final RecyclerView rvTrending;
 
-  @NonNull
-  public final TextView tvEmptyError;
-
-  private FragmentMangaSearchBinding(@NonNull LinearLayout rootView,
-      @NonNull ChipGroup cgGenreFilter, @NonNull ChipGroup cgStatusFilter,
-      @NonNull Chip chipGenreAction, @NonNull Chip chipGenreAdventure, @NonNull Chip chipGenreAll,
-      @NonNull Chip chipGenreComedy, @NonNull Chip chipGenreFantasy, @NonNull Chip chipGenreIsekai,
-      @NonNull Chip chipGenreRomance, @NonNull Chip chipGenreScifi,
-      @NonNull Chip chipGenreSupernatural, @NonNull Chip chipStatusAll,
-      @NonNull Chip chipStatusCompleted, @NonNull Chip chipStatusOngoing,
-      @NonNull TextInputEditText etSearch, @NonNull ProgressBar progressBar,
-      @NonNull RecyclerView rvMangaSearch, @NonNull TextInputLayout tilSearch,
-      @NonNull TextView tvEmptyError) {
+  private FragmentMangaSearchBinding(@NonNull NestedScrollView rootView,
+      @NonNull ProgressBar progressBar, @NonNull RecyclerView rvRecent,
+      @NonNull RecyclerView rvTrending) {
     this.rootView = rootView;
-    this.cgGenreFilter = cgGenreFilter;
-    this.cgStatusFilter = cgStatusFilter;
-    this.chipGenreAction = chipGenreAction;
-    this.chipGenreAdventure = chipGenreAdventure;
-    this.chipGenreAll = chipGenreAll;
-    this.chipGenreComedy = chipGenreComedy;
-    this.chipGenreFantasy = chipGenreFantasy;
-    this.chipGenreIsekai = chipGenreIsekai;
-    this.chipGenreRomance = chipGenreRomance;
-    this.chipGenreScifi = chipGenreScifi;
-    this.chipGenreSupernatural = chipGenreSupernatural;
-    this.chipStatusAll = chipStatusAll;
-    this.chipStatusCompleted = chipStatusCompleted;
-    this.chipStatusOngoing = chipStatusOngoing;
-    this.etSearch = etSearch;
     this.progressBar = progressBar;
-    this.rvMangaSearch = rvMangaSearch;
-    this.tilSearch = tilSearch;
-    this.tvEmptyError = tvEmptyError;
+    this.rvRecent = rvRecent;
+    this.rvTrending = rvTrending;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public NestedScrollView getRoot() {
     return rootView;
   }
 
@@ -141,125 +65,26 @@ public final class FragmentMangaSearchBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.cg_genre_filter;
-      ChipGroup cgGenreFilter = ViewBindings.findChildViewById(rootView, id);
-      if (cgGenreFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.cg_status_filter;
-      ChipGroup cgStatusFilter = ViewBindings.findChildViewById(rootView, id);
-      if (cgStatusFilter == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_genre_action;
-      Chip chipGenreAction = ViewBindings.findChildViewById(rootView, id);
-      if (chipGenreAction == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_genre_adventure;
-      Chip chipGenreAdventure = ViewBindings.findChildViewById(rootView, id);
-      if (chipGenreAdventure == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_genre_all;
-      Chip chipGenreAll = ViewBindings.findChildViewById(rootView, id);
-      if (chipGenreAll == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_genre_comedy;
-      Chip chipGenreComedy = ViewBindings.findChildViewById(rootView, id);
-      if (chipGenreComedy == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_genre_fantasy;
-      Chip chipGenreFantasy = ViewBindings.findChildViewById(rootView, id);
-      if (chipGenreFantasy == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_genre_isekai;
-      Chip chipGenreIsekai = ViewBindings.findChildViewById(rootView, id);
-      if (chipGenreIsekai == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_genre_romance;
-      Chip chipGenreRomance = ViewBindings.findChildViewById(rootView, id);
-      if (chipGenreRomance == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_genre_scifi;
-      Chip chipGenreScifi = ViewBindings.findChildViewById(rootView, id);
-      if (chipGenreScifi == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_genre_supernatural;
-      Chip chipGenreSupernatural = ViewBindings.findChildViewById(rootView, id);
-      if (chipGenreSupernatural == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_status_all;
-      Chip chipStatusAll = ViewBindings.findChildViewById(rootView, id);
-      if (chipStatusAll == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_status_completed;
-      Chip chipStatusCompleted = ViewBindings.findChildViewById(rootView, id);
-      if (chipStatusCompleted == null) {
-        break missingId;
-      }
-
-      id = R.id.chip_status_ongoing;
-      Chip chipStatusOngoing = ViewBindings.findChildViewById(rootView, id);
-      if (chipStatusOngoing == null) {
-        break missingId;
-      }
-
-      id = R.id.et_search;
-      TextInputEditText etSearch = ViewBindings.findChildViewById(rootView, id);
-      if (etSearch == null) {
-        break missingId;
-      }
-
-      id = R.id.progress_bar;
+      id = R.id.progressBar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
         break missingId;
       }
 
-      id = R.id.rv_manga_search;
-      RecyclerView rvMangaSearch = ViewBindings.findChildViewById(rootView, id);
-      if (rvMangaSearch == null) {
+      id = R.id.rvRecent;
+      RecyclerView rvRecent = ViewBindings.findChildViewById(rootView, id);
+      if (rvRecent == null) {
         break missingId;
       }
 
-      id = R.id.til_search;
-      TextInputLayout tilSearch = ViewBindings.findChildViewById(rootView, id);
-      if (tilSearch == null) {
+      id = R.id.rvTrending;
+      RecyclerView rvTrending = ViewBindings.findChildViewById(rootView, id);
+      if (rvTrending == null) {
         break missingId;
       }
 
-      id = R.id.tv_empty_error;
-      TextView tvEmptyError = ViewBindings.findChildViewById(rootView, id);
-      if (tvEmptyError == null) {
-        break missingId;
-      }
-
-      return new FragmentMangaSearchBinding((LinearLayout) rootView, cgGenreFilter, cgStatusFilter,
-          chipGenreAction, chipGenreAdventure, chipGenreAll, chipGenreComedy, chipGenreFantasy,
-          chipGenreIsekai, chipGenreRomance, chipGenreScifi, chipGenreSupernatural, chipStatusAll,
-          chipStatusCompleted, chipStatusOngoing, etSearch, progressBar, rvMangaSearch, tilSearch,
-          tvEmptyError);
+      return new FragmentMangaSearchBinding((NestedScrollView) rootView, progressBar, rvRecent,
+          rvTrending);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

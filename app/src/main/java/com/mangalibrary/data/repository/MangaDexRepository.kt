@@ -48,12 +48,37 @@ class MangaDexRepository(
         }
     }
 
-    suspend fun getMangaChapters(id: String, limit: Int = 50, offset: Int = 0): Result<List<ChapterItem>> {
+    suspend fun getTrendingManga(): Result<List<MangaItem>> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = api.getMangaChapters(id, limit = limit, offset = offset)
+                val response = api.getTrendingManga()
+                Result.success(response.data.map { dtoToMangaItem(it) })
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        }
+    }
+
+    suspend fun getRecentlyUpdatedManga(): Result<List<MangaItem>> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = api.getRecentlyUpdatedManga()
+                Result.success(response.data.map { dtoToMangaItem(it) })
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        }
+    }
+
+    suspend fun getMangaChapters(id: String, limit: Int = 100, offset: Int = 0): Result<List<ChapterItem>> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = api.getMangaChapters(id, limit = limit, offset = offset, languages = null)
                 val chapters = response.data.map { dto ->
                     val attr = dto.attributes
+                    val scanlationGroup = dto.relationships
+                        ?.firstOrNull { it.type == "scanlation_group" }
+                        ?.attributes?.get("name") as? String
                     ChapterItem(
                         id = dto.id,
                         chapter = attr.chapter,
@@ -61,7 +86,8 @@ class MangaDexRepository(
                         volume = attr.volume,
                         translatedLanguage = attr.translatedLanguage ?: "unknown",
                         publishAt = attr.publishAt,
-                        externalUrl = attr.externalUrl
+                        externalUrl = attr.externalUrl,
+                        scanlationGroup = scanlationGroup
                     )
                 }
                 Result.success(chapters)

@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.mangalibrary.data.local.ReadingHistoryManager
 import com.mangalibrary.data.model.ChapterItem
@@ -19,6 +20,8 @@ class LectorActivity : AppCompatActivity() {
     private val repository = MangaDexRepository()
     private lateinit var historyManager: ReadingHistoryManager
     private lateinit var adapter: ReaderPageAdapter
+    private lateinit var webtoonAdapter: ReaderPageAdapter
+    private var isWebtoonMode = false
 
     private var currentChapterId: String? = null
     private var currentChapterTitle: String? = null
@@ -54,6 +57,23 @@ class LectorActivity : AppCompatActivity() {
 
         adapter = ReaderPageAdapter()
         binding.viewPagerPages.adapter = adapter
+
+        webtoonAdapter = ReaderPageAdapter()
+        binding.rvWebtoonPages.layoutManager = LinearLayoutManager(this)
+        binding.rvWebtoonPages.adapter = webtoonAdapter
+
+        binding.btnToggleMode.setOnClickListener {
+            isWebtoonMode = !isWebtoonMode
+            if (isWebtoonMode) {
+                binding.viewPagerPages.visibility = View.GONE
+                binding.rvWebtoonPages.visibility = View.VISIBLE
+                binding.btnToggleMode.text = "📄 Páginas"
+            } else {
+                binding.viewPagerPages.visibility = View.VISIBLE
+                binding.rvWebtoonPages.visibility = View.GONE
+                binding.btnToggleMode.text = "📜 Webtoon"
+            }
+        }
 
         binding.viewPagerPages.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -145,6 +165,7 @@ class LectorActivity : AppCompatActivity() {
                     adapter.submitList(urls) {
                         binding.tvPageIndicator.text = "1 / ${urls.size}"
                     }
+                    webtoonAdapter.submitList(urls)
                 }
             }.onFailure { error ->
                 binding.tvPageIndicator.text = "Error"

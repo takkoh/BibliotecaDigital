@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-debug-39:\\layout_item_manga_carousel.xml.flat",
+        "source": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-main-41:\\layout\\item_manga_carousel.xml"
+    },
+    {
         "merged": "com.mangalibrary.app-debug-39:/layout_activity_lector.xml.flat",
         "source": "com.mangalibrary.app-main-41:/layout/activity_lector.xml"
     },
@@ -8,20 +12,12 @@
         "source": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-main-41:\\layout\\item_manga.xml"
     },
     {
-        "merged": "com.mangalibrary.app-debug-39:/layout_fragment_manga_detail.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/layout/fragment_manga_detail.xml"
-    },
-    {
         "merged": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-debug-39:\\menu_bottom_nav_menu.xml.flat",
         "source": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-main-41:\\menu\\bottom_nav_menu.xml"
     },
     {
         "merged": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-debug-39:\\menu_mi_menu.xml.flat",
         "source": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-main-41:\\menu\\mi_menu.xml"
-    },
-    {
-        "merged": "com.mangalibrary.app-debug-39:/layout_fragment_manga_search.xml.flat",
-        "source": "com.mangalibrary.app-main-41:/layout/fragment_manga_search.xml"
     },
     {
         "merged": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-debug-39:\\layout_item_chapter.xml.flat",
@@ -44,12 +40,12 @@
         "source": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-main-41:\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-debug-39:\\layout_item_reader_page.xml.flat",
-        "source": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-main-41:\\layout\\item_reader_page.xml"
-    },
-    {
         "merged": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-debug-39:\\layout_fragment_manga_detail.xml.flat",
         "source": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-main-41:\\layout\\fragment_manga_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-debug-39:\\layout_item_reader_page.xml.flat",
+        "source": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-main-41:\\layout\\item_reader_page.xml"
     },
     {
         "merged": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-debug-39:\\layout_fragment_favorites.xml.flat",
@@ -62,6 +58,10 @@
     {
         "merged": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-debug-39:\\layout_activity_editar_perfil.xml.flat",
         "source": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-main-41:\\layout\\activity_editar_perfil.xml"
+    },
+    {
+        "merged": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-debug-39:\\layout_fragment_busqueda.xml.flat",
+        "source": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-main-41:\\layout\\fragment_busqueda.xml"
     },
     {
         "merged": "C:\\Users\\LuzRd\\.gradle\\daemon\\9.5.0\\com.mangalibrary.app-debug-39:\\layout_item_recommendation.xml.flat",

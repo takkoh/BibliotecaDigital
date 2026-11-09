@@ -38,6 +38,12 @@ class ChapterAdapter(
             val titleText = "Capítulo ${chapter.chapter ?: "-"}${chapter.title?.let { ": $it" } ?: ""}"
             binding.tvChapterTitle.text = titleText
             binding.tvChapterLang.text = "Idioma: ${chapter.translatedLanguage.uppercase()}"
+            if (!chapter.scanlationGroup.isNullOrBlank()) {
+                binding.tvChapterGroup.visibility = View.VISIBLE
+                binding.tvChapterGroup.text = "Traductor: ${chapter.scanlationGroup}"
+            } else {
+                binding.tvChapterGroup.visibility = View.GONE
+            }
 
             binding.root.setOnClickListener {
                 onChapterClicked?.invoke(chapter)

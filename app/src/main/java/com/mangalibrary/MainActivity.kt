@@ -2,6 +2,7 @@ package com.mangalibrary
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.mangalibrary.Fragmentos.FragmentBusqueda
 import com.mangalibrary.Fragmentos.FragmentCuenta
 import com.mangalibrary.Fragmentos.FragmentInicio
 import com.mangalibrary.Fragmentos.FragmentMisFavoritos
@@ -23,6 +24,10 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.Item_Inicio -> {
                     verFragmentInicio()
+                    true
+                }
+                R.id.Item_Busqueda -> {
+                    verFragmentBusqueda()
                     true
                 }
                 R.id.Item_Recomendaciones -> {
@@ -47,6 +52,14 @@ class MainActivity : AppCompatActivity() {
         val fragment = FragmentInicio()
         val fragmentTransition = supportFragmentManager.beginTransaction()
         fragmentTransition.replace(binding.FragmentL1.id, fragment, "FragmentInicio")
+        fragmentTransition.commit()
+    }
+
+    private fun verFragmentBusqueda() {
+        binding.tituloRL.text = "Búsqueda"
+        val fragment = FragmentBusqueda()
+        val fragmentTransition = supportFragmentManager.beginTransaction()
+        fragmentTransition.replace(binding.FragmentL1.id, fragment, "FragmentBusqueda")
         fragmentTransition.commit()
     }
 

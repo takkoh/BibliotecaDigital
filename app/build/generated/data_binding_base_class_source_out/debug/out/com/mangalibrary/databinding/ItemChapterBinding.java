@@ -24,16 +24,20 @@ public final class ItemChapterBinding implements ViewBinding {
   public final ImageButton btnOpenChapter;
 
   @NonNull
+  public final TextView tvChapterGroup;
+
+  @NonNull
   public final TextView tvChapterLang;
 
   @NonNull
   public final TextView tvChapterTitle;
 
   private ItemChapterBinding(@NonNull MaterialCardView rootView,
-      @NonNull ImageButton btnOpenChapter, @NonNull TextView tvChapterLang,
-      @NonNull TextView tvChapterTitle) {
+      @NonNull ImageButton btnOpenChapter, @NonNull TextView tvChapterGroup,
+      @NonNull TextView tvChapterLang, @NonNull TextView tvChapterTitle) {
     this.rootView = rootView;
     this.btnOpenChapter = btnOpenChapter;
+    this.tvChapterGroup = tvChapterGroup;
     this.tvChapterLang = tvChapterLang;
     this.tvChapterTitle = tvChapterTitle;
   }
@@ -71,6 +75,12 @@ public final class ItemChapterBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_chapter_group;
+      TextView tvChapterGroup = ViewBindings.findChildViewById(rootView, id);
+      if (tvChapterGroup == null) {
+        break missingId;
+      }
+
       id = R.id.tv_chapter_lang;
       TextView tvChapterLang = ViewBindings.findChildViewById(rootView, id);
       if (tvChapterLang == null) {
@@ -83,8 +93,8 @@ public final class ItemChapterBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemChapterBinding((MaterialCardView) rootView, btnOpenChapter, tvChapterLang,
-          tvChapterTitle);
+      return new ItemChapterBinding((MaterialCardView) rootView, btnOpenChapter, tvChapterGroup,
+          tvChapterLang, tvChapterTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
