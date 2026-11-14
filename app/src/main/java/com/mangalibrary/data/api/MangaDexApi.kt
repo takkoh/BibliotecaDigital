@@ -19,6 +19,8 @@ interface MangaDexApi {
         @Query("title") title: String? = null,
         @Query("limit") limit: Int = 20,
         @Query("offset") offset: Int = 0,
+        @Query("includedTags[]") includedTags: List<String>? = null,
+        @Query("status[]") status: List<String>? = null,
         @Query("includes[]") includes: List<String> = listOf("cover_art", "author", "artist"),
         @Query("contentRating[]") contentRating: List<String> = listOf("safe", "suggestive"),
         @Query("order[relevance]") orderRelevance: String? = "desc"
@@ -33,11 +35,28 @@ interface MangaDexApi {
     @GET("manga/{id}/feed")
     suspend fun getMangaChapters(
         @Path("id") id: String,
-        @Query("limit") limit: Int = 50,
+        @Query("limit") limit: Int = 100,
         @Query("offset") offset: Int = 0,
-        @Query("translatedLanguage[]") languages: List<String> = listOf("es", "es-la", "en"),
+        @Query("translatedLanguage[]") languages: List<String>? = null,
+        @Query("includes[]") includes: List<String> = listOf("scanlation_group"),
         @Query("order[chapter]") orderChapter: String = "asc"
     ): MangaDexListResponse<ChapterDataDto>
+
+    @GET("manga")
+    suspend fun getTrendingManga(
+        @Query("limit") limit: Int = 10,
+        @Query("includes[]") includes: List<String> = listOf("cover_art", "author", "artist"),
+        @Query("contentRating[]") contentRating: List<String> = listOf("safe", "suggestive"),
+        @Query("order[followedCount]") orderFollowed: String = "desc"
+    ): MangaDexListResponse<MangaDataDto>
+
+    @GET("manga")
+    suspend fun getRecentlyUpdatedManga(
+        @Query("limit") limit: Int = 10,
+        @Query("includes[]") includes: List<String> = listOf("cover_art", "author", "artist"),
+        @Query("contentRating[]") contentRating: List<String> = listOf("safe", "suggestive"),
+        @Query("order[latestUploadedChapter]") orderLatest: String = "desc"
+    ): MangaDexListResponse<MangaDataDto>
 
     /**
      * Obtiene el servidor At-Home de MangaDex para un capítulo específico,

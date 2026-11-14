@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -15,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mangalibrary.R
 import com.mangalibrary.databinding.FragmentMangaSearchBinding
 import com.mangalibrary.ui.MangaViewModel
-import com.mangalibrary.ui.adapters.MangaAdapter
+import com.mangalibrary.ui.adapters.MangaCarouselAdapter
 import kotlinx.coroutines.launch
 
 class FragmentInicio : Fragment() {
@@ -24,7 +22,8 @@ class FragmentInicio : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: MangaViewModel by activityViewModels()
-    private lateinit var adapter: MangaAdapter
+    private lateinit var trendingAdapter: MangaCarouselAdapter
+    private lateinit var recentAdapter: MangaCarouselAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +37,7 @@ class FragmentInicio : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = MangaAdapter { selectedManga ->
+        val onMangaClick: (com.mangalibrary.data.model.MangaItem) -> Unit = { selectedManga ->
             viewModel.selectManga(selectedManga)
             parentFragmentManager.beginTransaction()
                 .replace(R.id.FragmentL1, FragmentDetalleManga())
@@ -46,35 +45,22 @@ class FragmentInicio : Fragment() {
                 .commit()
         }
 
-        binding.rvMangaSearch.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvMangaSearch.adapter = adapter
+        trendingAdapter = MangaCarouselAdapter(onMangaClick)
+        recentAdapter = MangaCarouselAdapter(onMangaClick)
 
-        binding.etSearch.doAfterTextChanged { text ->
-            viewModel.onSearchQueryChanged(text?.toString() ?: "")
-        }
+        binding.rvTrending.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvTrending.adapter = trendingAdapter
 
-        binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                viewModel.searchManga()
-                true
-            } else {
-                false
-            }
-        }
+        binding.rvRecent.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvRecent.adapter = recentAdapter
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
-                    adapter.submitList(state.searchResults)
+                    trendingAdapter.submitList(state.trendingMangas)
+                    recentAdapter.submitList(state.recentlyUpdatedMangas)
 
                     binding.progressBar.visibility = if (state.isLoading) View.VISIBLE else View.GONE
-
-                    if (!state.isLoading && state.searchResults.isEmpty()) {
-                        binding.tvEmptyError.visibility = View.VISIBLE
-                        binding.tvEmptyError.text = state.errorMessage ?: "No se encontraron mangas."
-                    } else {
-                        binding.tvEmptyError.visibility = View.GONE
-                    }
                 }
             }
         }
