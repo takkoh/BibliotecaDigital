@@ -8,6 +8,11 @@ build/
 app/build/
 **/build/
 
+# IDEs y editores
+.idea/
+.vs/
+.kotlin/
+
 # Archivos de configuración local
 local.properties
 
