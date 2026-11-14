@@ -4,13 +4,25 @@ Este documento recopila de manera acumulativa todas las fases de desarrollo, arq
 
 ---
 
-## 📅 Fase 6: Tarjetas Prominentes en Carruseles de Inicio (Actual)
+## 📅 Fase 7: Estabilización, Cuadrícula de Favoritos y Limpieza de Recursos (Actual)
+
+### Objetivos y Resultados
+1. **Pantalla de Favoritos en Cuadrícula de 4 Columnas (`FragmentMisFavoritos.kt`)**:
+   - Integración de `GridLayoutManager(requireContext(), 4)` junto a `MangaCarouselAdapter` para presentar los mangas guardados como un catálogo de portadas prominentes.
+2. **Depuración de Recursos XML**:
+   - Eliminación del archivo de menú redundante `bottom_nav_menu.xml`. `mi_menu.xml` queda como el único recurso activo vinculado en `activity_main.xml`.
+3. **Resolución de Conflictos y Configuración de Git**:
+   - Resolución completa de marcadores de conflicto en archivos `.kt` y `.xml`.
+   - Actualización de `.gitignore` para omitir artefactos de compilación (`build/`, `.gradle/`) y carpetas locales de IDEs (`.idea/`, `.vs/`, `.kotlin/`).
+
+---
+
+## 📅 Fase 6: Tarjetas Prominentes en Carruseles de Inicio
 
 ### Objetivos
 1. **Rediseño de Tarjetas para Carruseles (`item_manga_carousel.xml`, `MangaCarouselAdapter.kt`)**:
    - Creación de un diseño vertical optimizado para los carruseles horizontales de la pantalla de inicio (`FragmentInicio`).
-   - Las tarjetas tienen un ancho de `165dp` y una imagen de portada prominente de `210dp` de altura, **conservando intacta toda la información original** (título, estado, autor y chips de géneros).
-   - Asignación de `MangaCarouselAdapter` a los RecyclerViews de tendencias y recientes.
+   - Tarjetas prominentes conservando intacta toda la información original (título, estado, autor y chips de géneros).
 
 ---
 
@@ -18,7 +30,7 @@ Este documento recopila de manera acumulativa todas las fases de desarrollo, arq
 
 ### Objetivos
 1. **Búsqueda en Barra de Navegación Inferior**:
-   - Acceso rápido y flotante a la búsqueda, convirtiendo el inicio en un panel de descubrimiento exclusivo.
+   - Acceso rápido y flotante a la búsqueda en `BottomNavigationView`.
 2. **Indicador Visual de Tag Activo y Navegación Global por Tags**:
    - Chip interactivo con botón de cierre en búsqueda y clics en etiquetas desde el detalle del manga.
 
@@ -54,3 +66,4 @@ Este documento recopila de manera acumulativa todas las fases de desarrollo, arq
 
 ## 🚀 Verificación y Resultados Globales
 - **Compilación Exitosa**: Todos los módulos compilan correctamente sin errores (`Build finished successfully`).
+- **Pruebas Manuales**: Navegación de fragments, lector dual, búsqueda por tags y gestión de favoritos verificados.
