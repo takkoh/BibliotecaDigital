@@ -4,8 +4,12 @@ app/node_modules/
 
 # Gradle y carpetas de compilación
 .gradle/
-/build/
+build/
+app/build/
 **/build/
+
+# Archivos de configuración local
+local.properties
 
 # Archivos temporales de Expo
 .expo/
