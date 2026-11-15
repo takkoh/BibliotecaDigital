@@ -1,5 +1,6 @@
 package com.mangalibrary.Fragmentos
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -38,7 +39,7 @@ class FragmentDetalleManga : Fragment() {
     private lateinit var recAdapter: RecommendationAdapter
 
     private var allChapters: List<ChapterItem> = emptyList()
-    private var currentLanguageFilter: String = "all" // "all" or language code
+    private var currentLanguageFilter: String = "es" // Default preferred language
     private var isAscendingSort = true
 
     override fun onCreateView(
@@ -54,6 +55,10 @@ class FragmentDetalleManga : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         favoritesManager = FavoritesManager(requireContext())
         historyManager = ReadingHistoryManager(requireContext())
+
+        // Load preferred language from user profile
+        val sharedPrefs = requireContext().getSharedPreferences("user_profile_prefs", Context.MODE_PRIVATE)
+        currentLanguageFilter = sharedPrefs.getString("preferred_lang", "es") ?: "es"
 
         binding.toolbarDetail.setNavigationOnClickListener {
             parentFragmentManager.popBackStack()
@@ -97,30 +102,7 @@ class FragmentDetalleManga : Fragment() {
                     }
 
                     // Botón Continuar Leyendo
-                    val lastRead = historyManager.getLastReadChapter(manga.id)
-                    if (lastRead != null) {
-                        binding.btnContinueReading.visibility = View.VISIBLE
-                        binding.btnContinueReading.text = "📖 Continuar Leyendo: ${lastRead.chapterTitle}"
-                        binding.btnContinueReading.setOnClickListener {
-                            val chapterIds = ArrayList(allChapters.map { it.id })
-                            val chapterTitles = ArrayList(allChapters.map { c ->
-                                "Capítulo ${c.chapter ?: "-"}${c.title?.let { t -> ": $t" } ?: ""}"
-                            })
-                            val index = allChapters.indexOfFirst { it.id == lastRead.chapterId }
-
-                            val intent = Intent(requireContext(), LectorActivity::class.java).apply {
-                                putExtra("CHAPTER_ID", lastRead.chapterId)
-                                putExtra("CHAPTER_TITLE", lastRead.chapterTitle)
-                                putExtra("MANGA_ID", manga.id)
-                                putExtra("CHAPTER_INDEX", if (index != -1) index else 0)
-                                putStringArrayListExtra("CHAPTER_IDS", chapterIds)
-                                putStringArrayListExtra("CHAPTER_TITLES", chapterTitles)
-                            }
-                            startActivity(intent)
-                        }
-                    } else {
-                        binding.btnContinueReading.visibility = View.GONE
-                    }
+                    updateContinueReadingButton(manga.id)
 
                     // Favorite button
                     val isFav = favoritesManager.isFavorite(manga.id)
@@ -168,29 +150,45 @@ class FragmentDetalleManga : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.uiState.value.selectedManga?.let { manga ->
-            val lastRead = historyManager.getLastReadChapter(manga.id)
-            if (lastRead != null) {
-                binding.btnContinueReading.visibility = View.VISIBLE
-                binding.btnContinueReading.text = "📖 Continuar Leyendo: ${lastRead.chapterTitle}"
-                binding.btnContinueReading.setOnClickListener {
-                    val chapterIds = ArrayList(allChapters.map { it.id })
-                    val chapterTitles = ArrayList(allChapters.map { c ->
-                        "Capítulo ${c.chapter ?: "-"}${c.title?.let { t -> ": $t" } ?: ""}"
-                    })
-                    val index = allChapters.indexOfFirst { it.id == lastRead.chapterId }
+        // Refresh preferred language in case it was updated in profile
+        val sharedPrefs = requireContext().getSharedPreferences("user_profile_prefs", Context.MODE_PRIVATE)
+        val newPrefLang = sharedPrefs.getString("preferred_lang", "es") ?: "es"
+        if (newPrefLang != currentLanguageFilter && allChapters.isNotEmpty()) {
+            currentLanguageFilter = newPrefLang
+            setupLanguageDropdown()
+            applyChapterLanguageFilter()
+        }
 
-                    val intent = Intent(requireContext(), LectorActivity::class.java).apply {
-                        putExtra("CHAPTER_ID", lastRead.chapterId)
-                        putExtra("CHAPTER_TITLE", lastRead.chapterTitle)
-                        putExtra("MANGA_ID", manga.id)
-                        putExtra("CHAPTER_INDEX", if (index != -1) index else 0)
-                        putStringArrayListExtra("CHAPTER_IDS", chapterIds)
-                        putStringArrayListExtra("CHAPTER_TITLES", chapterTitles)
-                    }
-                    startActivity(intent)
+        viewModel.uiState.value.selectedManga?.let { manga ->
+            updateContinueReadingButton(manga.id)
+        }
+    }
+
+    private fun updateContinueReadingButton(mangaId: String) {
+        val lastRead = historyManager.getLastReadChapter(mangaId)
+        if (lastRead != null) {
+            binding.btnContinueReading.visibility = View.VISIBLE
+            binding.btnContinueReading.text = "📖 Continuar Leyendo: ${lastRead.chapterTitle}"
+            binding.btnContinueReading.setOnClickListener {
+                val filtered = getFilteredAndSortedChapters()
+                val chapterIds = ArrayList(filtered.map { it.id })
+                val chapterTitles = ArrayList(filtered.map { c ->
+                    "Capítulo ${c.chapter ?: "-"}${c.title?.let { t -> ": $t" } ?: ""}"
+                })
+                val index = filtered.indexOfFirst { it.id == lastRead.chapterId }
+
+                val intent = Intent(requireContext(), LectorActivity::class.java).apply {
+                    putExtra("CHAPTER_ID", lastRead.chapterId)
+                    putExtra("CHAPTER_TITLE", lastRead.chapterTitle)
+                    putExtra("MANGA_ID", mangaId)
+                    putExtra("CHAPTER_INDEX", if (index != -1) index else 0)
+                    putStringArrayListExtra("CHAPTER_IDS", chapterIds)
+                    putStringArrayListExtra("CHAPTER_TITLES", chapterTitles)
                 }
+                startActivity(intent)
             }
+        } else {
+            binding.btnContinueReading.visibility = View.GONE
         }
     }
 
@@ -198,6 +196,11 @@ class FragmentDetalleManga : Fragment() {
         val langs = listOf("Todos") + allChapters.map { it.translatedLanguage.lowercase() }.distinct().sorted()
         val langAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, langs)
         binding.autoCompleteLang.setAdapter(langAdapter)
+
+        // Set selection in dropdown matching currentLanguageFilter
+        val displaySelected = if (currentLanguageFilter == "all") "Todos" else currentLanguageFilter
+        binding.autoCompleteLang.setText(displaySelected, false)
+
         binding.autoCompleteLang.setOnItemClickListener { _, _, position, _ ->
             val selected = langs[position]
             currentLanguageFilter = if (selected == "Todos") "all" else selected
@@ -205,7 +208,7 @@ class FragmentDetalleManga : Fragment() {
         }
     }
 
-    private fun applyChapterLanguageFilter() {
+    private fun getFilteredAndSortedChapters(): List<ChapterItem> {
         var filtered = if (currentLanguageFilter == "all") {
             allChapters
         } else {
@@ -216,6 +219,11 @@ class FragmentDetalleManga : Fragment() {
         } else {
             filtered.sortedByDescending { it.chapter?.toFloatOrNull() ?: 0f }
         }
+        return filtered
+    }
+
+    private fun applyChapterLanguageFilter() {
+        val filtered = getFilteredAndSortedChapters()
         chapterAdapter.submitList(filtered)
     }
 
