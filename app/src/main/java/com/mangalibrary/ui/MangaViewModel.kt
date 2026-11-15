@@ -14,7 +14,12 @@ import kotlinx.coroutines.launch
 
 data class MangaUiState(
     val searchQuery: String = "",
+    val selectedStatus: String? = null,
+    val selectedGenreTagId: String? = null,
+    val selectedGenreTagName: String? = null,
     val searchResults: List<MangaItem> = emptyList(),
+    val trendingMangas: List<MangaItem> = emptyList(),
+    val recentlyUpdatedMangas: List<MangaItem> = emptyList(),
     val selectedManga: MangaItem? = null,
     val chapters: List<ChapterItem> = emptyList(),
     val recommendations: List<RecommendationResult> = emptyList(),
@@ -32,18 +37,49 @@ class MangaViewModel(
     val uiState: StateFlow<MangaUiState> = _uiState.asStateFlow()
 
     init {
-        // Initial popular / default search
+        loadHomeData()
         searchManga("")
+    }
+
+    fun loadHomeData() {
+        viewModelScope.launch {
+            val trendingRes = repository.getTrendingManga()
+            val recentRes = repository.getRecentlyUpdatedManga()
+            _uiState.value = _uiState.value.copy(
+                trendingMangas = trendingRes.getOrDefault(emptyList()),
+                recentlyUpdatedMangas = recentRes.getOrDefault(emptyList())
+            )
+        }
     }
 
     fun onSearchQueryChanged(newQuery: String) {
         _uiState.value = _uiState.value.copy(searchQuery = newQuery)
     }
 
-    fun searchManga(query: String = _uiState.value.searchQuery) {
+    fun setFilters(status: String?, genreTagId: String?, genreTagName: String? = null) {
+        _uiState.value = _uiState.value.copy(
+            selectedStatus = status,
+            selectedGenreTagId = genreTagId,
+            selectedGenreTagName = genreTagName
+        )
+        searchManga()
+    }
+
+    fun searchManga(
+        query: String = _uiState.value.searchQuery,
+        status: String? = _uiState.value.selectedStatus,
+        genreTagId: String? = _uiState.value.selectedGenreTagId
+    ) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true, errorMessage = null)
-            val result = repository.searchManga(query)
+            val tagList = genreTagId?.let { listOf(it) }
+            val statusList = status?.let { listOf(it) }
+
+            val result = repository.searchManga(
+                query = query,
+                includedTags = tagList,
+                status = statusList
+            )
             result.onSuccess { mangas ->
                 _uiState.value = _uiState.value.copy(
                     searchResults = mangas,
@@ -67,11 +103,9 @@ class MangaViewModel(
         )
 
         viewModelScope.launch {
-            // Load Chapters
             val chapterResult = repository.getMangaChapters(manga.id)
             val loadedChapters = chapterResult.getOrDefault(emptyList())
 
-            // Generate Recommendations based on search candidates
             val candidates = _uiState.value.searchResults
             val recs = recommendationEngine.getRecommendations(manga, candidates)
 

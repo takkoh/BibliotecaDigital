@@ -12,9 +12,8 @@ import com.mangalibrary.databinding.FragmentCuentaBinding
 import com.mangalibrary.ui.EditarPerfilActivity
 
 /**
- * Fragmento de Cuenta basado en la estructura de la App Agenda,
- * mostrando información detallada del perfil y permitiendo abrir la actividad
- * de edición de perfil para actualizar todos los campos del usuario.
+ * Fragmento de Cuenta simplificado para aplicación de Manga,
+ * mostrando únicamente el nombre y el correo electrónico del lector.
  */
 class FragmentCuenta : Fragment() {
 
@@ -33,7 +32,7 @@ class FragmentCuenta : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Botón Editar Perfil (Abre EditarPerfilActivity para editar todos los campos)
+        // Botón Editar Perfil
         binding.BtnEditarPerfil.setOnClickListener {
             val intent = Intent(requireContext(), EditarPerfilActivity::class.java)
             startActivity(intent)
@@ -47,7 +46,6 @@ class FragmentCuenta : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        // Recargar los datos actualizados cada vez que se regresa al fragmento
         val sharedPrefs = requireContext().getSharedPreferences("user_profile_prefs", Context.MODE_PRIVATE)
         loadProfileData(sharedPrefs)
     }
@@ -55,17 +53,9 @@ class FragmentCuenta : Fragment() {
     private fun loadProfileData(sharedPrefs: android.content.SharedPreferences) {
         val name = sharedPrefs.getString("user_name", "Lector de Manga")
         val email = sharedPrefs.getString("user_email", "lector@mangalibrary.com")
-        val birth = sharedPrefs.getString("user_birth", "01/01/2000")
-        val member = sharedPrefs.getString("user_member", "Enero 2026")
-        val phone = sharedPrefs.getString("user_phone", "+34 600 000 000")
-        val status = sharedPrefs.getString("user_status", "Activo")
 
         binding.TvNombres.text = name
         binding.TvEmail.text = email
-        binding.TvNacimiento.text = birth
-        binding.TvMiembro.text = member
-        binding.TvTelefono.text = phone
-        binding.TvEstadoCuenta.text = status
     }
 
     override fun onDestroyView() {

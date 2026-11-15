@@ -35,7 +35,8 @@ data class ChapterItem(
     val volume: String?,
     val translatedLanguage: String,
     val publishAt: String?,
-    val externalUrl: String?
+    val externalUrl: String?,
+    val scanlationGroup: String? = null
 )
 
 data class RecommendationResult(
