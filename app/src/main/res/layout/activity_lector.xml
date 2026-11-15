@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootReaderLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black">
@@ -39,11 +40,11 @@
     <LinearLayout
         android:id="@+id/layoutBottomNav"
         android:layout_width="0dp"
-        android:layout_height="52dp"
+        android:layout_height="56dp"
         android:background="#CC000000"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingHorizontal="8dp"
+        android:paddingHorizontal="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -55,7 +56,7 @@
             android:layout_height="wrap_content"
             android:text="⏮ Ant."
             android:textColor="@android:color/white"
-            android:textSize="11sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tvPageIndicator"
@@ -64,7 +65,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@android:color/white"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnToggleMode"
@@ -73,7 +75,7 @@
             android:layout_height="wrap_content"
             android:text="↕ Webtoon"
             android:textColor="@android:color/white"
-            android:textSize="11sp" />
+            android:textSize="12sp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNextChapter"
@@ -82,7 +84,7 @@
             android:layout_height="wrap_content"
             android:text="Sig. ⏭"
             android:textColor="@android:color/white"
-            android:textSize="11sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

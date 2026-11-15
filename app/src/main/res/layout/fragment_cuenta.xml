@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/colorSurface"
+    android:clipToPadding="false"
     android:padding="16dp"
     tools:context=".Fragmentos.FragmentCuenta">
 
@@ -15,103 +17,166 @@
             android:id="@+id/Txt_perfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="MI PERFIL"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"/>
+            android:letterSpacing="0.02"
+            android:text="@string/Txt_perfil"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/Tv_perfil"
-            android:layout_below="@id/Txt_perfil"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@android:drawable/ic_menu_myplaces"
+            android:layout_below="@id/Txt_perfil"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:scaleType="centerCrop"
             android:clickable="true"
             android:focusable="true"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_myplaces"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+            app:strokeColor="?attr/colorPrimary"
+            app:strokeWidth="2dp" />
 
         <TextView
             android:id="@+id/txt_informacion"
-            android:layout_below="@id/Tv_perfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/Tv_perfil"
+            android:layout_marginTop="24dp"
             android:gravity="start"
-            android:text="Información de Lector"
-            android:textStyle="bold"
+            android:letterSpacing="0.01"
+            android:text="Información del Lector"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="17sp"
-            android:layout_marginTop="24dp"/>
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/Txt_nombres"
-            android:text="Nombre:"
-            android:layout_width="wrap_content"
+        <!-- Tarjeta contenedora de datos personales -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardInfoContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_informacion"
-            android:layout_marginTop="16dp"
-            android:textStyle="bold"/>
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="?attr/colorSurfaceVariant"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="?attr/colorOutlineVariant"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Nombres -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/Txt_nombres"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Txt_nombres"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Tv_nombres"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="@string/Tv_nombres"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <!-- Email -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/Txt_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Txt_email"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="@string/Tv_email"
+                        android:textColor="?attr/colorOnSurface" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:id="@+id/Tv_nombres"
-            android:text="Lector de Manga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_informacion"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="16dp"/>
-
-        <TextView
-            android:id="@+id/Txt_email"
-            android:text="Correo Electrónico:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/Txt_nombres"
-            android:layout_marginTop="16dp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/Tv_email"
-            android:text="lector@mangalibrary.com"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/Tv_nombres"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="16dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/TxtOpciones"
-            android:text="Opciones"
-            android:layout_below="@+id/Txt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cardInfoContainer"
+            android:layout_marginTop="24dp"
+            android:letterSpacing="0.01"
+            android:text="@string/TxtOpciones"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginTop="32dp"/>
+            android:textStyle="bold" />
 
-        <!-- Editar perfil -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/Btn_editar_perfil"
-            android:layout_width="220dp"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:text="Editar Perfil"
+        <!-- Tarjeta de Opciones / Ajustes -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardOptionsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/TxtOpciones"
-            android:layout_marginTop="16dp"
-            app:icon="@android:drawable/ic_menu_edit" />
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="?attr/colorSurfaceVariant"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="?attr/colorOutlineVariant"
+            app:strokeWidth="1dp">
 
-        <!-- Cerrar sesión -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/Btn_cerrar_sesion"
-            android:layout_width="220dp"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:text="Cerrar Sesión"
-            android:layout_below="@id/Btn_editar_perfil"
-            android:layout_marginTop="12dp"
-            app:icon="@android:drawable/ic_lock_power_off" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Editar perfil -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/Btn_editar_perfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/m_button_height"
+                    android:text="@string/Btn_editar_perfil"
+                    app:icon="@android:drawable/ic_menu_edit" />
+
+                <!-- Cerrar sesión -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/Btn_cerrar_sesion"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/m_button_height"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/Btn_cerrar_sesion"
+                    android:textColor="?attr/colorError"
+                    android:visibility="visible"
+                    app:icon="@android:drawable/ic_lock_power_off"
+                    app:iconTint="?attr/colorError" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
     </RelativeLayout>
 
 </ScrollView>

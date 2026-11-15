@@ -4,57 +4,55 @@ Documento histórico y detallado de todas las modificaciones, correcciones de me
 
 ---
 
-## 🚀 Versión Actual / Últimas Mejoras (Sincronización Total, Limpieza y Cuadrícula de Favoritos)
+## 🚀 Versión Actual / Últimas Mejoras (Contador de Páginas, CI/CD Lint & Corrección de Preview de Lector)
 
-### 🛠️ Archivos Modificados y Ajustes
-1. **`app/src/main/java/com/mangalibrary/Fragmentos/FragmentMisFavoritos.kt`**
-   - Configurada la pantalla de favoritos con `GridLayoutManager(requireContext(), 4)` junto con `MangaCarouselAdapter` (`item_manga_carousel.xml`), mostrando los mangas guardados en una cuadrícula prominente de 4 columnas.
-2. **`app/src/main/res/menu/bottom_nav_menu.xml` [ELIMINADO]**
-   - Eliminado el archivo de menú redundante y no utilizado. `mi_menu.xml` queda como el único recurso activo para la barra de navegación inferior (`BottomNavigationView`).
-3. **`.gitignore`**
-   - Actualizado para ignorar artefactos de compilación (`app/build/`, `.gradle/`) y carpetas locales de IDEs (`.idea/`, `.vs/`, `.kotlin/`).
-
----
-
-## 🚀 Mejoras Anteriores (Tarjetas Prominentes en Carruseles de Inicio)
-
-### 🆕 Nuevos Archivos y Recursos
-1. **`app/src/main/res/layout/item_manga_carousel.xml`**
-   - Diseño de tarjeta vertical (*CardView*) de mayor tamaño optimizado para carruseles, conservando toda la información original (título, portadas de alta calidad, autor, estado y chips de géneros).
-2. **`app/src/main/java/com/mangalibrary/ui/adapters/MangaCarouselAdapter.kt`**
-   - Adaptador para renderizar tarjetas verticales prominentes en inicio y favoritos.
-
----
-
-## 🚀 Mejoras Anteriores (Búsqueda en Barra de Navegación, Tags Activos e Inicio de Descubrimiento)
-
-### 🆕 Nuevos Archivos y Recursos
-1. **`app/src/main/res/menu/mi_menu.xml`**
-   - Añadida la opción de **Búsqueda** a la barra de navegación inferior (*Bottom Navigation*).
-2. **`app/src/main/java/com/mangalibrary/Fragmentos/FragmentBusqueda.kt` y `app/src/main/res/layout/fragment_busqueda.xml`**
-   - Pantalla de búsqueda dedicada con barra prominente, filtro de estado y chip indicador de **Tag Activo** con botón de cierre.
-
----
-
-## 🚀 Mejoras Anteriores (Lector Webtoon, Filtros e Idiomas Dinámicos)
-
-### 🆕 Nuevos Archivos
+### 🆕 Nuevas Funcionalidades, Mejoras y Correcciones
 1. **`app/src/main/java/com/mangalibrary/ui/LectorActivity.kt`**
-   - Actividad del lector interactivo de capítulos con soporte dual: modo Paged (`ViewPager2`) y modo Webtoon (desplazamiento vertical continuo con `RecyclerView`).
+   - **Contador Dinámico en Modo Webtoon**: Añadido `RecyclerView.OnScrollListener` en `rvWebtoonPages` para actualizar en tiempo real el indicador de páginas (`tvPageIndicator`) a medida que el usuario hace desplazamiento vertical continuo.
+   - **Deduplicación Avanzada y Filtrado por Idioma**: Implementación de `deduplicateChapters()` con extracción numérica mediante `extractChapterFloat`, detección de prefijos (`extra`, `special`, `omake`, `oneshot`, `side`), y filtrado automático por el idioma del capítulo inicial. Esto evita duplicados entre *Scanlation Groups* y previene el cruce de idiomas cuando la lista de capítulos proviene del filtro por defecto "Todos".
+2. **`.github/workflows/ci.yml`**
+   - Agregada la tarea de validación estática `./gradlew lintDebug` dentro de la pipeline de GitHub Actions para verificar reglas de código, accesibilidad y posibles problemas en cada PR/push.
+3. **`ReaderPageAdapter.kt`, `item_reader_page.xml` & Dependencias (`PhotoView`)**
+   - **Carga Instantánea y Optimizada**: Restauración de la carga asíncrona directa mediante Coil (`load` con `crossfade`) en `item_reader_page.xml` y `ReaderPageAdapter`, garantizando velocidad máxima de aparición de imágenes en los modos Páginas y Webtoon.
+   - **Soporte Adaptativo de Lector (Páginas vs Webtoon)**: Configuración dinámica en `ReaderPageAdapter` para aplicar `MATCH_PARENT` en modo Páginas (`ViewPager2`) y `WRAP_CONTENT` con `adjustViewBounds = true` en modo Webtoon (`RecyclerView`). Esto evita que las imágenes se recorten al hacer zoom en modo páginas y permite un desplazamiento vertical continuo y sin solapamientos en modo Webtoon.
+   - **Corrección de Preview**: Sincronización de dependencias Gradle y compilación exitosa (`app:assembleDebug`) para resolver la advertencia de clase faltante en el previsualizador de layouts.
 
 ---
 
-## 📦 Versión Base & Resolución de Conflictos de Merge
+## 🚀 Mejoras Anteriores (Navegación Inteligente de Capítulos por Traductor)
 
-### 🔍 Resolución de Conflictos de Fusión (*Merge Conflicts*)
-Se resolvieron exitosamente los conflictos de merge en los archivos clave de la base:
-- `FragmentDetalleManga.kt`, `FragmentInicio.kt`, `FragmentMisFavoritos.kt`, `MainActivity.kt`, `MangaLibraryApp.kt`, `MangaViewModel.kt`, `ChapterAdapter.kt`, `activity_lector.xml`, `fragment_manga_detail.xml`, `fragment_manga_search.xml`, `item_chapter.xml`.
+### 🆕 Nuevas Funcionalidades y Mejoras de Lector
+1. **`app/src/main/java/com/mangalibrary/ui/LectorActivity.kt` y `app/src/main/java/com/mangalibrary/ui/adapters/ChapterAdapter.kt`**
+   - **Navegación Inteligente Anti-Duplicados**: Salto automático al **siguiente número de capítulo único**, evitando leer capítulos repetidos entre múltiples traductores (*Scanlation Groups*).
+   - **Prioridad de Traductor**: Se prioriza mantener el mismo grupo de traducción e idioma.
+
+---
+
+## 🚀 Mejoras Anteriores (Estado Vacío de Capítulos y Corrección de Títulos)
+
+### 🆕 Nuevas Funcionalidades y Mejoras de UI/UX
+1. **`app/src/main/res/layout/fragment_manga_detail.xml` y `app/src/main/java/com/mangalibrary/Fragmentos/FragmentDetalleManga.kt`**
+   - **Estado Vacío para Capítulos (`tv_no_chapters`)**: Mensaje informativo si un manga no posee capítulos o no hay resultados para el filtro de idioma.
+   - **Reubicación del Botón Continuar Leyendo**: Ancho completo dentro de la tarjeta de cabecera.
+2. **`app/src/main/java/com/mangalibrary/data/model/MangaModels.kt` y `app/src/main/java/com/mangalibrary/data/local/ReadingHistoryManager.kt`**
+   - **Función `displayTitle()` y Sanitización**: Prevención de acumulación de títulos repetidos (*"Capítulo -: Capítulo 4"*).
 
 ---
 
 ## ✨ Resumen General de Funcionalidades
-- ✅ **Compilación 100% Exitosa (`Build finished successfully`)**.
-- ✅ **Favoritos en Cuadrícula (*Grid 4 Columnas*)**: Mangas guardados con tarjetas prominentes y portadas grandes.
+- ✅ **Compilación y Ejecución 100% Estables (`Build finished successfully`)**.
+- ✅ **Validación Lint automatizada** en CI/CD (`lintDebug`).
+- ✅ **Contador de Páginas Dinámico** en Modo Webtoon.
+- ✅ **Navegación Inteligente de Capítulos** (salto automático a números de capítulo únicos manteniendo el traductor preferido).
+- ✅ **Estado Vacío Dinámico** para capítulos sin stock o sin coincidencia de idioma.
+- ✅ **Diseño Mejorado en Detalle de Manga** con botón de continuar leyendo a ancho completo.
+- ✅ **Corrección de Títulos Acumulativos** en el historial de lectura (*Continuar Leyendo*).
+- ✅ **Iconos Personalizados en `drawable/`** para el menú inferior y la barra de herramientas.
+- ✅ **Alternancia de Tema Modo Claro / Modo Oscuro** con persistencia en `SharedPreferences`.
+- ✅ **Rediseño UI/UX con Material 3 (M3)** en toda la carpeta `layout/`.
+- ✅ **Logo Oficial de la App** integrado en el lanzador (*Launcher Icon*) y en la barra superior.
+- ✅ **Modo Inmersivo de Pantalla Completa** con ocultado/mostrado de controles al tocar.
+- ✅ **Favoritos en Cuadrícula (*Grid 4 Columnas*)**: Tarjetas prominentes y portadas grandes.
 - ✅ **Tarjetas Prominentes en Carruseles de Inicio** (Tendencias y Recientes).
 - ✅ **Búsqueda en Barra de Navegación Inferior**.
 - ✅ **Indicador de Tag Activo** y navegación global por tags.

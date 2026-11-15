@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.mangalibrary.data.model.ChapterItem
+import com.mangalibrary.data.model.displayTitle
 
 data class ReadingProgress(
     val mangaId: String,
@@ -18,7 +19,7 @@ class ReadingHistoryManager(context: Context) {
     private val gson = Gson()
 
     fun saveLastReadChapter(mangaId: String, chapter: ChapterItem) {
-        val chapterName = "Capítulo ${chapter.chapter ?: "-"}${chapter.title?.let { ": $it" } ?: ""}"
+        val chapterName = chapter.displayTitle()
         val progress = ReadingProgress(
             mangaId = mangaId,
             chapterId = chapter.id,
@@ -31,7 +32,13 @@ class ReadingHistoryManager(context: Context) {
     fun getLastReadChapter(mangaId: String): ReadingProgress? {
         val json = prefs.getString("history_$mangaId", null) ?: return null
         return try {
-            gson.fromJson(json, ReadingProgress::class.java)
+            val progress = gson.fromJson(json, ReadingProgress::class.java)
+            // Sanitizar por si hay registros antiguos mal formateados
+            var cleanTitle = progress.chapterTitle.replace("Capítulo -: ", "").replace("Capítulo - : ", "")
+            if (cleanTitle.contains("Capítulo Capítulo")) {
+                cleanTitle = cleanTitle.replace("Capítulo Capítulo", "Capítulo")
+            }
+            progress.copy(chapterTitle = cleanTitle)
         } catch (e: Exception) {
             null
         }

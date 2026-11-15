@@ -9,14 +9,30 @@ import coil.load
 import com.mangalibrary.databinding.ItemReaderPageBinding
 
 /**
- * Adaptador para mostrar las páginas del capítulo en un ViewPager2.
+ * Adaptador para mostrar las páginas del capítulo en un ViewPager2 o RecyclerView (Webtoon).
  * Utiliza ListAdapter y Coil para cargar eficientemente las imágenes de cada página.
  */
-class ReaderPageAdapter : ListAdapter<String, ReaderPageAdapter.PageViewHolder>(PageDiffCallback()) {
+class ReaderPageAdapter(
+    private val isWebtoon: Boolean = false,
+    private val onPageClicked: (() -> Unit)? = null
+) : ListAdapter<String, ReaderPageAdapter.PageViewHolder>(PageDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PageViewHolder {
         val binding = ItemReaderPageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PageViewHolder(binding)
+        if (isWebtoon) {
+            binding.root.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            binding.ivChapterPage.adjustViewBounds = true
+        } else {
+            binding.root.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            binding.ivChapterPage.adjustViewBounds = false
+        }
+        return PageViewHolder(binding, onPageClicked)
     }
 
     override fun onBindViewHolder(holder: PageViewHolder, position: Int) {
@@ -24,13 +40,16 @@ class ReaderPageAdapter : ListAdapter<String, ReaderPageAdapter.PageViewHolder>(
     }
 
     class PageViewHolder(
-        private val binding: ItemReaderPageBinding
+        private val binding: ItemReaderPageBinding,
+        private val onPageClicked: (() -> Unit)?
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(imageUrl: String) {
-            // Carga la imagen de la página utilizando la librería Coil
             binding.ivChapterPage.load(imageUrl) {
                 crossfade(true)
+            }
+            binding.root.setOnClickListener {
+                onPageClicked?.invoke()
             }
         }
     }

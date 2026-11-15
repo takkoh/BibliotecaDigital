@@ -168,7 +168,13 @@ class FragmentDetalleManga : Fragment() {
         val lastRead = historyManager.getLastReadChapter(mangaId)
         if (lastRead != null) {
             binding.btnContinueReading.visibility = View.VISIBLE
-            binding.btnContinueReading.text = "📖 Continuar Leyendo: ${lastRead.chapterTitle}"
+            var displayTitle = lastRead.chapterTitle
+                .replace("Capítulo -: ", "")
+                .replace("Capítulo - : ", "")
+            if (displayTitle.contains("Capítulo Capítulo")) {
+                displayTitle = displayTitle.replace("Capítulo Capítulo", "Capítulo")
+            }
+            binding.btnContinueReading.text = "📖 Continuar Leyendo: $displayTitle"
             binding.btnContinueReading.setOnClickListener {
                 val filtered = getFilteredAndSortedChapters()
                 val chapterIds = ArrayList(filtered.map { it.id })
@@ -225,6 +231,16 @@ class FragmentDetalleManga : Fragment() {
     private fun applyChapterLanguageFilter() {
         val filtered = getFilteredAndSortedChapters()
         chapterAdapter.submitList(filtered)
+
+        if (allChapters.isEmpty() && !viewModel.uiState.value.isDetailLoading) {
+            binding.tvNoChapters.visibility = View.VISIBLE
+            binding.tvNoChapters.text = "No hay capítulos disponibles para este manga."
+        } else if (filtered.isEmpty() && !viewModel.uiState.value.isDetailLoading) {
+            binding.tvNoChapters.visibility = View.VISIBLE
+            binding.tvNoChapters.text = "No hay capítulos disponibles en este idioma."
+        } else {
+            binding.tvNoChapters.visibility = View.GONE
+        }
     }
 
     override fun onDestroyView() {

@@ -43,4 +43,5 @@ dependencies {
     implementation(libs.okhttp.logging.interceptor)
     implementation(libs.coil)
     implementation(libs.kotlinx.coroutines.android)
+    implementation("com.github.chrisbanes:PhotoView:2.3.0")
 }

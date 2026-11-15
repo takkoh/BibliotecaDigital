@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Biblioteca Digital Manga</string>
+    <string name="app_name">Manga Library</string>
     <string name="TituloRL">Biblioteca Digital</string>
     <string name="search_hint">Buscar mangas en MangaDex...</string>
     <string name="status_label">Estado: %1$s</string>
