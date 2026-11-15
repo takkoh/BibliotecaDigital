@@ -4,8 +4,11 @@
     android:layout_width="165dp"
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="3dp">
+    app:cardBackgroundColor="?attr/colorSurface"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:strokeColor="?attr/colorOutlineVariant"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +19,7 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_manga_cover"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="215dp"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Corner8" />
 
@@ -27,17 +30,19 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textColor="@color/text_primary"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="14sp"
+            android:letterSpacing="0.01"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_manga_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textColor="@color/text_secondary"
-            android:textSize="11sp" />
+            android:layout_marginTop="3dp"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_manga_author"
@@ -45,7 +50,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/text_secondary"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:textSize="11sp" />
 
         <com.google.android.material.chip.ChipGroup
@@ -53,7 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            app:chipSpacingHorizontal="2dp" />
+            app:chipSpacingHorizontal="2dp"
+            app:chipSpacingVertical="2dp" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

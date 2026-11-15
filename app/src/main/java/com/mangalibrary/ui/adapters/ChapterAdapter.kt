@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mangalibrary.data.model.ChapterItem
+import com.mangalibrary.data.model.displayTitle
 import com.mangalibrary.databinding.ItemChapterBinding
 import com.mangalibrary.ui.LectorActivity
 
@@ -35,7 +36,7 @@ class ChapterAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(chapter: ChapterItem, position: Int) {
-            val titleText = "Capítulo ${chapter.chapter ?: "-"}${chapter.title?.let { ": $it" } ?: ""}"
+            val titleText = chapter.displayTitle()
             binding.tvChapterTitle.text = titleText
             binding.tvChapterLang.text = "Idioma: ${chapter.translatedLanguage.uppercase()}"
             if (!chapter.scanlationGroup.isNullOrBlank()) {
@@ -51,10 +52,10 @@ class ChapterAdapter(
                 val context = binding.root.context
                 val count = getItemCount()
                 val chapterIds = ArrayList((0 until count).map { getItemAt(it).id })
-                val chapterTitles = ArrayList((0 until count).map {
-                    val c = getItemAt(it)
-                    "Capítulo ${c.chapter ?: "-"}${c.title?.let { t -> ": $t" } ?: ""}"
-                })
+                val chapterTitles = ArrayList((0 until count).map { getItemAt(it).displayTitle() })
+                val chapterNumbers = ArrayList((0 until count).map { getItemAt(it).chapter ?: "" })
+                val chapterLanguages = ArrayList((0 until count).map { getItemAt(it).translatedLanguage })
+                val chapterGroups = ArrayList((0 until count).map { getItemAt(it).scanlationGroup ?: "" })
 
                 val intent = Intent(context, LectorActivity::class.java).apply {
                     putExtra("CHAPTER_ID", chapter.id)
@@ -63,6 +64,9 @@ class ChapterAdapter(
                     putExtra("CHAPTER_INDEX", position)
                     putStringArrayListExtra("CHAPTER_IDS", chapterIds)
                     putStringArrayListExtra("CHAPTER_TITLES", chapterTitles)
+                    putStringArrayListExtra("CHAPTER_NUMBERS", chapterNumbers)
+                    putStringArrayListExtra("CHAPTER_LANGUAGES", chapterLanguages)
+                    putStringArrayListExtra("CHAPTER_GROUPS", chapterGroups)
                 }
                 context.startActivity(intent)
             }

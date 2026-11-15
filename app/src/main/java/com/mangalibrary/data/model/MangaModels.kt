@@ -39,6 +39,19 @@ data class ChapterItem(
     val scanlationGroup: String? = null
 )
 
+fun ChapterItem.displayTitle(): String {
+    val numStr = if (!chapter.isNullOrBlank()) "Capítulo $chapter" else ""
+    val rawTitle = title?.trim() ?: ""
+
+    return when {
+        rawTitle.startsWith("Capítulo", ignoreCase = true) -> rawTitle
+        numStr.isNotBlank() && rawTitle.isNotBlank() -> "$numStr: $rawTitle"
+        numStr.isNotBlank() -> numStr
+        rawTitle.isNotBlank() -> rawTitle
+        else -> "Capítulo"
+    }
+}
+
 data class RecommendationResult(
     val manga: MangaItem,
     val score: Int,

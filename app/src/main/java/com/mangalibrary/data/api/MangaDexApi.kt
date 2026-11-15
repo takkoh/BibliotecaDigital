@@ -38,6 +38,7 @@ interface MangaDexApi {
         @Query("limit") limit: Int = 100,
         @Query("offset") offset: Int = 0,
         @Query("translatedLanguage[]") languages: List<String>? = null,
+        @Query("contentRating[]") contentRating: List<String> = listOf("safe", "suggestive", "erotica", "pornographic"),
         @Query("includes[]") includes: List<String> = listOf("scanlation_group"),
         @Query("order[chapter]") orderChapter: String = "asc"
     ): MangaDexListResponse<ChapterDataDto>

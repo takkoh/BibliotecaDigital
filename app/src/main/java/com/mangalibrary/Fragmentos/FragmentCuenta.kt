@@ -11,11 +11,6 @@ import androidx.fragment.app.Fragment
 import com.mangalibrary.databinding.FragmentCuentaBinding
 import com.mangalibrary.ui.EditarPerfilActivity
 
-/**
- * Fragmento de Cuenta basado en la estructura de la App Agenda,
- * mostrando información detallada del perfil y permitiendo abrir la actividad
- * de edición de perfil para actualizar todos los campos del usuario.
- */
 class FragmentCuenta : Fragment() {
 
     private var _binding: FragmentCuentaBinding? = null
@@ -33,7 +28,7 @@ class FragmentCuenta : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Botón Editar Perfil (Abre EditarPerfilActivity para editar todos los campos)
+        // Botón Editar Perfil
         binding.BtnEditarPerfil.setOnClickListener {
             val intent = Intent(requireContext(), EditarPerfilActivity::class.java)
             startActivity(intent)
@@ -47,7 +42,6 @@ class FragmentCuenta : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        // Recargar los datos actualizados cada vez que se regresa al fragmento
         val sharedPrefs = requireContext().getSharedPreferences("user_profile_prefs", Context.MODE_PRIVATE)
         loadProfileData(sharedPrefs)
     }

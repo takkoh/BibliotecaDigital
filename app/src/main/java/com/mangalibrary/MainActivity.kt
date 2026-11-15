@@ -1,7 +1,9 @@
 package com.mangalibrary
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.mangalibrary.Fragmentos.FragmentBusqueda
 import com.mangalibrary.Fragmentos.FragmentCuenta
 import com.mangalibrary.Fragmentos.FragmentInicio
@@ -18,7 +20,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        verFragmentInicio()
+        val sharedPrefs = getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+        var isDarkMode = sharedPrefs.getBoolean("dark_mode", false)
+
+        binding.btnThemeToggle.setOnClickListener {
+            isDarkMode = !isDarkMode
+            sharedPrefs.edit().putBoolean("dark_mode", isDarkMode).apply()
+
+            if (isDarkMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
+        if (savedInstanceState == null) {
+            verFragmentInicio()
+        }
 
         binding.BottomNV.setOnItemSelectedListener { item ->
             when (item.itemId) {

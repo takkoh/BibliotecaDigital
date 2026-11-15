@@ -19,6 +19,7 @@ import com.mangalibrary.R
 import com.mangalibrary.data.local.FavoritesManager
 import com.mangalibrary.data.local.ReadingHistoryManager
 import com.mangalibrary.data.model.ChapterItem
+import com.mangalibrary.data.model.displayTitle
 import com.mangalibrary.databinding.FragmentMangaDetailBinding
 import com.mangalibrary.ui.LectorActivity
 import com.mangalibrary.ui.MangaViewModel
@@ -40,6 +41,7 @@ class FragmentDetalleManga : Fragment() {
     private var allChapters: List<ChapterItem> = emptyList()
     private var currentLanguageFilter: String = "all" // "all" or language code
     private var isAscendingSort = true
+    private var lastMangaId: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,6 +84,12 @@ class FragmentDetalleManga : Fragment() {
                     val manga = state.selectedManga ?: return@collect
                     chapterAdapter.mangaId = manga.id
 
+                    // Resetear el filtro de idioma al cambiar de manga
+                    if (lastMangaId != manga.id) {
+                        lastMangaId = manga.id
+                        currentLanguageFilter = "all"
+                    }
+
                     binding.tvDetailTitle.text = manga.title
                     binding.tvDetailAuthor.text = if (manga.authors.isNotEmpty()) {
                         "Autor: ${manga.authors.joinToString(", ") { it.name }}"
@@ -100,12 +108,16 @@ class FragmentDetalleManga : Fragment() {
                     val lastRead = historyManager.getLastReadChapter(manga.id)
                     if (lastRead != null) {
                         binding.btnContinueReading.visibility = View.VISIBLE
-                        binding.btnContinueReading.text = "📖 Continuar Leyendo: ${lastRead.chapterTitle}"
+                        var displayTitle = lastRead.chapterTitle
+                            .replace("Capítulo -: ", "")
+                            .replace("Capítulo - : ", "")
+                        if (displayTitle.contains("Capítulo Capítulo")) {
+                            displayTitle = displayTitle.replace("Capítulo Capítulo", "Capítulo")
+                        }
+                        binding.btnContinueReading.text = "📖 Continuar Leyendo: $displayTitle"
                         binding.btnContinueReading.setOnClickListener {
                             val chapterIds = ArrayList(allChapters.map { it.id })
-                            val chapterTitles = ArrayList(allChapters.map { c ->
-                                "Capítulo ${c.chapter ?: "-"}${c.title?.let { t -> ": $t" } ?: ""}"
-                            })
+                            val chapterTitles = ArrayList(allChapters.map { it.displayTitle() })
                             val index = allChapters.indexOfFirst { it.id == lastRead.chapterId }
 
                             val intent = Intent(requireContext(), LectorActivity::class.java).apply {
@@ -198,6 +210,9 @@ class FragmentDetalleManga : Fragment() {
         val langs = listOf("Todos") + allChapters.map { it.translatedLanguage.lowercase() }.distinct().sorted()
         val langAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, langs)
         binding.autoCompleteLang.setAdapter(langAdapter)
+        val selectedText = if (currentLanguageFilter == "all") "Todos" else currentLanguageFilter
+        binding.autoCompleteLang.setText(selectedText, false)
+
         binding.autoCompleteLang.setOnItemClickListener { _, _, position, _ ->
             val selected = langs[position]
             currentLanguageFilter = if (selected == "Todos") "all" else selected
@@ -217,6 +232,16 @@ class FragmentDetalleManga : Fragment() {
             filtered.sortedByDescending { it.chapter?.toFloatOrNull() ?: 0f }
         }
         chapterAdapter.submitList(filtered)
+
+        if (allChapters.isEmpty() && !viewModel.uiState.value.isDetailLoading) {
+            binding.tvNoChapters.visibility = View.VISIBLE
+            binding.tvNoChapters.text = "No hay capítulos disponibles para este manga."
+        } else if (filtered.isEmpty() && !viewModel.uiState.value.isDetailLoading) {
+            binding.tvNoChapters.visibility = View.VISIBLE
+            binding.tvNoChapters.text = "No hay capítulos disponibles en este idioma."
+        } else {
+            binding.tvNoChapters.visibility = View.GONE
+        }
     }
 
     override fun onDestroyView() {
