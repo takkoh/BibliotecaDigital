@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/ToolbarRL"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/m_toolbar_height"
+        android:background="?attr/colorSurface">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivAppLogo"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Logo de la App"
+                android:src="@mipmap/ic_launcher_foreground" />
+
+            <TextView
+                android:id="@+id/tituloRL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.01"
+                android:text="@string/TituloRL"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Botón de Tema con el icono oficial de Material Design (Brillo / Modo Oscuro) -->
+        <ImageButton
+            android:id="@+id/btnThemeToggle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Cambiar Tema Modo Claro u Oscuro"
+            android:src="@drawable/ic_brightness_medium"
+            app:tint="?attr/colorOnSurface" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="?attr/colorOutlineVariant" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/FragmentL1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/View_Separator"
+        android:layout_below="@id/ToolbarRL" />
+
+    <View
+        android:id="@+id/View_Separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/BottomNV"
+        android:background="?attr/colorOutlineVariant" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/BottomNV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?attr/colorSurface"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/mi_menu" />
+
+</RelativeLayout>
