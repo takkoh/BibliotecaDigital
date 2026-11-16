@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val sharedPrefs = getSharedPreferences("app_settings", Context.MODE_PRIVATE)
-        var isDarkMode = sharedPrefs.getBoolean("dark_mode", false)
+        var isDarkMode = sharedPrefs.getBoolean("dark_mode", AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
 
         binding.btnThemeToggle.setOnClickListener {
             isDarkMode = !isDarkMode
@@ -91,9 +91,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun verFragmentMisFavoritos() {
         binding.tituloRL.text = "Mis Favoritos"
-        val fragment = FragmentMisFavoritos()
+        val fragmentMisFavoritos = FragmentMisFavoritos()
         val fragmentTransition = supportFragmentManager.beginTransaction()
-        fragmentTransition.replace(binding.FragmentL1.id, fragment, "FragmentMisFavoritos")
+        fragmentTransition.replace(binding.FragmentL1.id, fragmentMisFavoritos, "FragmentMisFavoritos")
         fragmentTransition.commit()
     }
 

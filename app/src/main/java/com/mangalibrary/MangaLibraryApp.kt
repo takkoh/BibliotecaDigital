@@ -13,11 +13,16 @@ class MangaLibraryApp : Application(), ImageLoaderFactory {
     override fun onCreate() {
         super.onCreate()
         val prefs = getSharedPreferences("app_settings", MODE_PRIVATE)
-        val isDarkMode = prefs.getBoolean("dark_mode", false)
-        if (isDarkMode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        if (prefs.contains("dark_mode")) {
+            val isDarkMode = prefs.getBoolean("dark_mode", false)
+            if (isDarkMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
         } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            // Follow system night mode by default
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         }
     }
 

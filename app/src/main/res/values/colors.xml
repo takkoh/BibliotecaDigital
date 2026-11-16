@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Material 3 Modern Light Palette -->
-    <color name="primary">#6750A4</color>
-    <color name="primary_variant">#4F378B</color>
-    <color name="secondary">#006A6A</color>
-    <color name="background">#FEF7FF</color>
+    <!-- Professional Colors -->
+    <color name="primary">#6200EE</color>
+    <color name="primary_variant">#3700B3</color>
+    <color name="secondary">#03DAC6</color>
+    <color name="background">#F6F7FB</color>
     <color name="surface">#FFFFFF</color>
     <color name="text_primary">#1D1B20</color>
     <color name="text_secondary">#49454F</color>
     <color name="star_gold">#FFB800</color>
-    <color name="chip_bg">#EADDFF</color>
-    <color name="chip_text">#21005D</color>
+    <color name="chip_bg">#E8DEF8</color>
+    <color name="chip_text">#1D192B</color>
 </resources>
